@@ -2,260 +2,222 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Al-Istibanah - Upon the Manhaj of the Salaf</title>
+<title>Al-Istibanah</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Source+Serif+4&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#0f1115;
+  --panel:#151923;
+  --panel-2:#1b2030;
+  --border:#252b3a;
+  --text:#e6e9ef;
+  --muted:#9aa1b2;
+  --accent:#4f8cff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:"Cormorant Garamond",serif;
-  background:#fdfbf6;
-  color:#2a2a2a;
+  font-family:Inter,system-ui;
+  background:var(--bg);
+  color:var(--text);
 }
 
-/* ================= TOPBAR ================= */
+/* ========== TOPBAR ========== */
 .topbar{
+  height:48px;
   display:flex;
   justify-content:flex-end;
   align-items:center;
-  padding:10px 24px;
-  background:linear-gradient(#fdfbf6,#efe4cc);
-  border-bottom:1px solid #cbb891;
+  padding:0 20px;
+  border-bottom:1px solid var(--border);
+  background:var(--panel);
 }
 
-/* ================= SEARCH ================= */
-.search-area{display:flex;align-items:center;gap:10px}
+.search-area{display:flex;gap:8px}
 .search-box input{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:7px 10px;
+  border-radius:6px;
   width:220px;
-  padding:8px 12px;
-  border-radius:8px;
-  border:1px solid #d8c7a4;
-  background:linear-gradient(#fffefb,#efe3cd);
-  transition:.3s;
 }
-.search-box input:focus{width:300px}
 
-.search-icon{
-  width:34px;height:34px;border-radius:8px;
-  background:linear-gradient(#f6eedc,#e2d2ae);
-  border:1px solid #cbb891;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-}
-.search-icon img{width:16px}
-
-/* ================= HEADER ================= */
+/* ========== HEADER ========== */
 header{
-  position:relative;
-  border-bottom:1px solid #cbb891;
+  border-bottom:1px solid var(--border);
+  background:var(--panel);
 }
-header::before{
-  content:"";
-  position:absolute;inset:0;
-  background:url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  opacity:.15;
-}
-
 .header-inner{
-  position:relative;
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
-  padding:36px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  padding:28px 20px;
+}
+.header-inner h1{
+  font-weight:600;
+  letter-spacing:.2px;
+}
+.header-inner p{
+  color:var(--muted);
+  margin-top:6px;
 }
 
-.header-title{
-  display:flex;
-  gap:22px;
-  align-items:center;
-}
-.header-title img{width:200px}
-
-.header-text h1{
-  font-family:"Playfair Display",serif;
-  font-size:42px;
-  color:#3a2b1a;
-}
-.header-text p{
-  color:#4a3f2f;
-  max-width:600px;
-}
-
-/* ================= NAV BAR ================= */
+/* ========== NAV ========== */
 .navbar{
-  background:linear-gradient(#f7f1e4,#e7dbc2);
-  border-top:1px solid #cbb891;
-  border-bottom:1px solid #cbb891;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
 }
-
 .nav-inner{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
   display:flex;
-  gap:30px;
+  gap:26px;
   padding:0 20px;
 }
-
-.nav-item{
-  position:relative;
-}
-
-.nav-item > a{
+.nav-item{position:relative}
+.nav-item>a{
   display:block;
-  padding:14px 6px;
+  padding:14px 4px;
   text-decoration:none;
-  color:#3a2b1a;
-  font-size:18px;
+  color:var(--text);
+  font-weight:500;
 }
+.nav-item>a:hover{color:var(--accent)}
 
-.nav-item > a:hover{
-  color:#1a5fb4;
-}
-
-/* ================= DROPDOWN ================= */
+/* Dropdown */
 .dropdown{
   position:absolute;
   top:100%;
   left:0;
-  min-width:220px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #d6c4a3;
-  border-radius:10px;
-  box-shadow:0 10px 20px rgba(0,0,0,.2);
+  min-width:200px;
+  background:rgba(27,32,48,.95);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--border);
+  border-radius:8px;
   overflow:hidden;
 
   opacity:0;
-  transform:translateY(10px) scale(.98);
+  transform:translateY(10px);
   pointer-events:none;
   transition:.25s ease;
 }
-
 .nav-item:hover .dropdown{
   opacity:1;
-  transform:translateY(0) scale(1);
+  transform:translateY(0);
   pointer-events:auto;
 }
-
 .dropdown a{
   display:block;
-  padding:12px 16px;
+  padding:10px 14px;
+  color:var(--text);
   text-decoration:none;
-  color:#3a2b1a;
-  border-bottom:1px solid #e6dbc3;
 }
 .dropdown a:hover{
-  background:rgba(0,0,0,.04);
-  color:#1a5fb4;
+  background:rgba(255,255,255,.04);
+  color:var(--accent);
 }
 
-/* ================= LAYOUT ================= */
+/* ========== LAYOUT ========== */
 .container{
-  max-width:1150px;
-  margin:40px auto;
+  max-width:1200px;
+  margin:30px auto;
   padding:0 20px;
   display:grid;
-  grid-template-columns:1fr 260px;
-  gap:30px;
+  grid-template-columns:1fr 280px;
+  gap:28px;
 }
 
-/* ================= MAIN ================= */
+/* ========== MAIN ========== */
 main{
-  background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
-  url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  border:1px solid #e0d3b7;
-  border-radius:14px;
-  padding:26px;
-}
-
-main h2{
-  font-family:"Amiri",serif;
-  font-size:26px;
-  margin-bottom:20px;
-  border-bottom:1px solid #d8c7a4;
-}
-
-/* ================= ARTICLES ================= */
-.article{
-  padding:18px;
+  background:var(--panel);
+  border:1px solid var(--border);
   border-radius:10px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #e6dbc3;
+  padding:22px;
+}
+main h2{
   margin-bottom:16px;
-  transition:.25s;
+  font-weight:500;
 }
-.article:hover{
-  box-shadow:0 6px 14px rgba(0,0,0,.25);
-  transform:translateY(-2px);
-}
-.article-title{color:#1a5fb4;font-size:22px}
-.article-meta{font-size:14px;color:#6b5a45}
-.read-more{color:#1a5fb4;text-decoration:none}
-.read-more:hover{text-decoration:underline}
 
-/* ================= ASIDE ================= */
+/* ========== ARTICLE CARDS ========== */
+.article{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px;
+  margin-bottom:14px;
+}
+.article-title{
+  color:var(--accent);
+  font-size:20px;
+  font-family:"Source Serif 4",serif;
+}
+.article-meta{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:8px;
+}
+.article p{
+  font-family:"Source Serif 4",serif;
+  line-height:1.6;
+}
+.read-more{
+  color:var(--accent);
+  text-decoration:none;
+}
+
+/* ========== ASIDE ========== */
 aside{
-  background:linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.9)),
-  url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  border:1px solid #e0d3b7;
-  border-radius:14px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
   padding:18px;
 }
-aside h3{font-family:"Amiri",serif}
-
+aside h3{
+  margin-bottom:12px;
+  font-weight:500;
+}
 .nav-item-box{
   padding:10px;
-  margin-bottom:8px;
   border-radius:6px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #d6c4a3;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  margin-bottom:8px;
 }
 
-/* ================= FOOTER ================= */
+/* ========== FOOTER ========== */
 footer{
-  margin-top:50px;
+  border-top:1px solid var(--border);
   padding:24px;
   text-align:center;
-  border-top:1px solid #d8c7a4;
-  color:#6b5a45;
+  color:var(--muted);
 }
 </style>
 </head>
-
 <body>
 
 <div class="topbar">
   <div class="search-area">
     <div class="search-box">
-      <input id="searchInput" placeholder="Search articles…">
-    </div>
-    <div class="search-icon" onclick="searchArticles()">
-      <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/search-magnifying-glass-white-icon.webp">
+      <input id="searchInput" placeholder="Search articles...">
     </div>
   </div>
 </div>
 
 <header>
   <div class="header-inner">
-    <div class="header-title">
-      <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif">
-      <div class="header-text">
-        <h1>Al-Istibānah</h1>
-        <p>Upholding the Athār and the Creed of the Salaf — Providing Concise Advices, Translations, and Gems from the Salaf</p>
-      </div>
-    </div>
+    <h1>Al-Istibānah</h1>
+    <p>Personal notes, studies, and reminders upon the Book and the Sunnah.</p>
   </div>
 </header>
 
-<!-- ================= NAV BAR ================= -->
 <div class="navbar">
   <div class="nav-inner">
     <div class="nav-item"><a href="/">Home</a></div>
-
     <div class="nav-item">
       <a href="#">Categories ▾</a>
       <div class="dropdown">
@@ -265,34 +227,32 @@ footer{
         <a href="#">Tazkiyah</a>
       </div>
     </div>
-
     <div class="nav-item">
       <a href="#">Library ▾</a>
       <div class="dropdown">
         <a href="#">Books</a>
-        <a href="#">Treatises</a>
+        <a href="#">Notes</a>
         <a href="#">Translations</a>
       </div>
     </div>
-
     <div class="nav-item"><a href="#">About</a></div>
   </div>
 </div>
 
 <div class="container">
-<main>
-  <h2>Latest Articles</h2>
-  <div id="articlesList"></div>
-</main>
+  <main>
+    <h2>Latest Articles</h2>
+    <div id="articlesList"></div>
+  </main>
 
-<aside>
-  <h3>Recent Articles</h3>
-  <div id="recentArticles"></div>
-</aside>
+  <aside>
+    <h3>Recent</h3>
+    <div id="recentArticles"></div>
+  </aside>
 </div>
 
 <footer>
-© 2025 Al-Istibānah — Upon the Manhaj of the Salaf
+© 2025 Al-Istibānah
 </footer>
 
 <script>
@@ -322,7 +282,7 @@ function renderArticles(list){
     d.innerHTML=`
       <div class="article-title">${a.title}</div>
       <div class="article-meta">${hijriDate(a.date)}</div>
-      <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
+      <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more →</a></p>
     `;
     c.appendChild(d);
   });
@@ -337,12 +297,6 @@ function renderRecent(list){
     d.textContent=a.title;
     r.appendChild(d);
   });
-}
-
-function searchArticles(){
-  const q=document.getElementById("searchInput").value.trim();
-  if(!q)return;
-  window.location.href="/search.html?s="+encodeURIComponent(q);
 }
 </script>
 
