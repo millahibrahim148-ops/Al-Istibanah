@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,139 +7,56 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="">
-
-  <!-- ================== EMBED / PREVIEW ================== -->
-
-<meta property="og:site_name" content="Al-Istibānah.Org">
-<meta property="og:title" content="Al-Istibānah.Org">
-<meta property="og:description" content="Upholding the Athār and the Creed of the Salaf — Providing Concise Advices, Translations, and Gems from the Salaf.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://alistibanah.com/">
-
-<!-- IMPORTANT: MUST be a static JPG/PNG -->
-<meta property="og:image" content="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/Upholding%20the%20Ath%C4%81r%20and%20the%20Creed%20of%20the%20Salaf%20%E2%80%94%20Providing%20Concise%20Advices%2C%20Translation%20of%20Books%20Treaties%20And%20Gems%20from%20the%20'Ulam%C4%81%20and%20the%20Salaf%20%C2%ABRad%C4%AB%20Allahu%20%CA%BFAnhum%C2%BB.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<!-- Twitter / Discord -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Al-Istibānah">
-<meta name="twitter:description" content="Upon the Manhaj of the Salaf">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/Upholding%20the%20Ath%C4%81r%20and%20the%20Creed%20of%20the%20Salaf%20%E2%80%94%20Providing%20Concise%20Advices%2C%20Translation%20of%20Books%20Treaties%20And%20Gems%20from%20the%20'Ulam%C4%81%20and%20the%20Salaf%20%C2%ABRad%C4%AB%20Allahu%20%CA%BFAnhum%C2%BB.png">
-
-<!-- ================== END EMBED ================== -->
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:"Cormorant Garamond",serif;
-  background:#fdfbf6;
+  background:
+    radial-gradient(circle at top, #ffffff 0%, #f7f2e7 60%, #efe6d2 100%);
   color:#2a2a2a;
 }
-  .read-more {
-  text-decoration: none;   /* remove underline normally */
-  color: #1a5fb4;
+
+/* ================= GLOBAL FEEL ================= */
+*{
+  transition:
+    box-shadow .25s ease,
+    transform .25s ease,
+    background .25s ease,
+    border .25s ease;
 }
 
-.read-more:hover {
-  text-decoration: underline;  /* underline ONLY on hover */
-}
-  /* Hard bending light sweep */
-.sweep{
-  position:relative;
-  overflow:hidden;
-}
-
-.sweep::after{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-120%;
-  width:60%;
-  height:200%;
-  background:linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.15) 30%,
-    rgba(255,255,255,0.9) 50%,
-    rgba(255,255,255,0.15) 70%,
-    rgba(255,255,255,0) 100%
-  );
-  transform:skewX(-18deg);
-  animation:hardSweep 6s cubic-bezier(.4,0,.2,1) infinite;
-  pointer-events:none;
-}
-@keyframes hardSweep{
-  0%{
-    left:-120%;
-  }
-  45%{
-    left:120%;
-  }
-  100%{
-    left:120%;
-  }
-}
-
-
-
-/* ================= SEARCH EXPAND ================= */
-.search-box{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  transition:width .35s ease;
-}
-.search-box input{
-  width:240px;
-  transition:width .35s ease;
-}
-.search-box:hover input,
-.search-box input:focus{
-  width:340px;
-}
-@media(max-width:600px){
-  .search-box input{width:180px}
-  .search-box:hover input,
-  .search-box input:focus{width:220px}
-}
+.read-more{color:#1a3f6b;text-decoration:none}
+.read-more:hover{text-decoration:underline}
 
 /* ================= TOPBAR ================= */
 .topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 26px;
+  padding:12px 26px;
   background:linear-gradient(#fdfbf6,#efe4cc);
   border-bottom:1px solid #cbb891;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
 }
 .site-brand{
   font-family:"Amiri",serif;
-  font-size:26px;
+  font-size:24px;
   color:#3a2b1a;
 }
-.search-area{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.search-area{display:flex;align-items:center;gap:10px}
 .search-box input{
   padding:10px 14px;
-  border-radius:10px;
+  border-radius:12px;
   border:1px solid #d8c7a4;
   background:linear-gradient(#fffefb,#efe3cd);
 }
 .search-icon{
-  width:36px;
-  height:36px;
-  border-radius:10px;
+  width:38px;height:38px;border-radius:12px;
   background:linear-gradient(#f6eedc,#e2d2ae);
   border:1px solid #cbb891;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex;align-items:center;justify-content:center;
   cursor:pointer;
 }
 .search-icon img{width:16px}
@@ -149,11 +65,11 @@ body{
 header{
   position:relative;
   border-bottom:1px solid #cbb891;
+  box-shadow:0 4px 18px rgba(0,0,0,.18);
 }
 header::before{
   content:"";
-  position:absolute;
-  inset:0;
+  position:absolute;inset:0;
   background:url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover no-repeat;
   opacity:.18;
 }
@@ -165,39 +81,23 @@ header::before{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  text-shadow:0 1px 0 rgba(255,255,255,.6);
 }
-.header-title{
-  display:flex;
-  gap:26px;
-  align-items:center;
-}
+.header-title{display:flex;gap:26px;align-items:center}
 .header-title img{width:220px}
 .header-text h1{
   font-family:"Playfair Display","Cormorant Garamond",serif;
   font-size:46px;
   color:#3a2b1a;
-   position:relative;
 }
 .header-text p{color:#4a3f2f}
 
 /* ================= SOCIAL ================= */
-.social-icons{
-  display:flex;
-  gap:8px;
-}
+.social-icons{display:flex;gap:8px}
 .social-icons a{
-  width:44px;
-  height:44px;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 2px 4px rgba(0,0,0,.25);
-  transition:filter .2s, transform .2s;
-}
-.social-icons a:hover{
-  filter:brightness(1.2);
-  transform:translateY(-1px);
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
 }
 .social-icons img{width:22px}
 .social-fb{background:#5b7bd5}
@@ -217,11 +117,13 @@ header::before{
 
 /* ================= MAIN ================= */
 main{
-  background:linear-gradient(rgba(255,255,255,.85),rgba(255,255,255,.85)),
-  url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  border:1px solid #e0d3b7;
-  border-radius:14px;
+  background:
+    linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.9)),
+    url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
+  border:1px solid #dbcaa7;
+  border-radius:18px;
   padding:26px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 main h2{
   font-family:"Amiri",serif;
@@ -229,23 +131,29 @@ main h2{
   margin-bottom:20px;
   border-bottom:1px solid #d8c7a4;
 }
+
+/* ================= ARTICLE ================= */
 .article{
-  padding:18px;
-  border-radius:10px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #e6dbc3;
-  margin-bottom:16px;
-  transition:box-shadow .25s,transform .25s;
+  padding:20px;
+  border-radius:18px;
+  background:linear-gradient(#fffefb,#f1e6d1);
+  border:1px solid #e2d3b6;
+  margin-bottom:18px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 8px 20px rgba(0,0,0,.18);
 }
 .article:hover{
-  box-shadow:0 6px 14px rgba(0,0,0,.28);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.8) inset,
+    0 14px 30px rgba(0,0,0,.28);
   transform:translateY(-2px);
 }
 .article-title{
-  color:#1a5fb4;
+  color:#1a3f6b;
   font-size:22px;
+  text-shadow:0 1px 0 rgba(255,255,255,.6);
 }
-.article-title:hover{text-decoration:underline}
 .article-meta{
   display:flex;
   align-items:center;
@@ -254,63 +162,33 @@ main h2{
   color:#6b5a45;
 }
 .article-meta img{width:14px}
-.read-more{color:#1a5fb4}
-.read-more:hover{text-decoration:underline}
-
-  .article.has-image{
-  position:relative;
-  color:#2a2a2a;
-  overflow:hidden;
-}
-
-.article.has-image::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image: var(--bg);
-  background-size:cover;
-  background-position:center;
-  opacity:.25;
-  z-index:0;
-}
-
-.article.has-image > *{
-  position:relative;
-  z-index:1;
-}
-
-.article.has-image .article-title{
-  font-size:26px;
-  font-weight:700;
-}
-
-.article.has-image p{
-  background:rgba(255,255,255,.7);
-  padding:10px;
-  border-radius:6px;
-}
-
 
 /* ================= ASIDE ================= */
 aside{
-  background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
-  url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  border:1px solid #e0d3b7;
-  border-radius:14px;
+  background:
+    linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.92)),
+    url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
+  border:1px solid #dbcaa7;
+  border-radius:18px;
   padding:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 aside h3{font-family:"Amiri",serif}
+
 .nav-item{
-  padding:10px;
-  margin-bottom:8px;
-  border-radius:6px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #d6c4a3;
-  transition:box-shadow .2s,transform .2s;
+  padding:12px 14px;
+  margin-bottom:10px;
+  border-radius:14px;
+  background:linear-gradient(#fffefb,#f1e6d1);
+  border:1px solid #dbcaa7;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 4px 10px rgba(0,0,0,.18);
 }
 .nav-item:hover{
-  box-shadow:0 4px 8px rgba(0,0,0,.35);
-  transform:translateY(-1px);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.8) inset,
+    0 8px 18px rgba(0,0,0,.28);
 }
 
 /* ================= FOOTER ================= */
@@ -342,16 +220,10 @@ footer{
   <div class="header-inner">
     <div class="header-title">
       <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif">
-      <div class="header-text sweep">
+      <div class="header-text">
         <h1>Al-Istibānah</h1>
         <p>Upholding the Athār and the Creed of the Salaf — Providing Concise Advices, Translation of Books Treaties And Gems from the 'Ulamā and the Salaf «Radī Allahu ʿAnhum»</p>
       </div>
-    </div>
-    <div class="social-icons">
-      <a href="https://discord.com/users/1401569195388440637" class="social-fb"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/discord-white-icon.webp"></a>
-      <a href="https://www.instagram.com/millah.ibrah1m/" class="social-tw"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/instagram-white-icon.webp"></a>
-      <a href="https://www.youtube.com/@abuharbah05" class="social-ig"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/youtube-app-white-icon.webp"></a>
-      <a href="https://t.me/istibanah_bot" class="social-mail"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/telegram-xxl.png"></a>
     </div>
   </div>
 </header>
@@ -406,11 +278,7 @@ function renderArticles(list){
   list.sort((a,b)=>new Date(b.date)-new Date(a.date))
   .forEach(a=>{
     const d=document.createElement("div");
-    d.className = a.image ? "article has-image" : "article";
-    if(a.image){
-  d.style.setProperty("--bg", `url('${a.image}')`);
-}
-
+    d.className="article";
     d.innerHTML=`
       <div class="article-title">${a.title}</div>
       <div class="article-meta">
@@ -447,36 +315,3 @@ document.getElementById("searchInput").addEventListener("keydown",e=>{
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
