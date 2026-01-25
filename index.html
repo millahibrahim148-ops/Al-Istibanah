@@ -2,143 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Al-Istibanah - Upholding the Athār and the Creed of the Salaf</title>
+<title>Article Title - Al-Istibanah</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Scheherazade+New&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:"Cormorant Garamond",serif;
-  background:#fdfbf6;
+  font-family:"Amiri",serif;
+  background:#f7f3ea;
   color:#2a2a2a;
+  line-height:1.9;
 }
 
-.read-more{color:#1a5fb4;text-decoration:none}
-.read-more:hover{text-decoration:underline}
-
-/* ================= SEARCH ================= */
-.search-box{
-  display:flex;
-  gap:10px;
-}
-.search-box input{
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid #d8c7a4;
-  background:linear-gradient(#fffefb,#efe3cd);
-}
-
-/* ================= TOPBAR ================= */
+/* ===== Top Bar ===== */
 .topbar{
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
+  background:#e6dcc8;
+  border-bottom:1px solid #cbb891;
   padding:10px 20px;
-  background:linear-gradient(#fdfbf6,#efe4cc);
-  border-bottom:1px solid #cbb891;
-}
-
-/* ================= HEADER ================= */
-header{
-  position:relative;
-  border-bottom:1px solid #cbb891;
-}
-header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover no-repeat;
-  opacity:.18;
-}
-.header-inner{
-  position:relative;
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-.header-title{
-  display:flex;
-  gap:26px;
-  align-items:center;
-}
-.header-title img{width:220px}
-.header-text h1{
-  font-family:"Playfair Display",serif;
-  font-size:46px;
-  color:#3a2b1a;
-}
-.header-text p{color:#4a3f2f}
 
-/* ================= SOCIAL ================= */
-.social-icons{display:flex;gap:8px;}
-.social-icons a{
-  width:44px;height:44px;border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 4px rgba(0,0,0,.25);
+.topbar a{
+  text-decoration:none;
+  color:#1a5fb4;
 }
 
-/* ================= LAYOUT ================= */
+/* ===== Layout ===== */
 .container{
-  max-width:1150px;
-  margin:40px auto;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns:1fr 260px;
-  gap:30px;
+  max-width:900px;
+  margin:30px auto;
+  background:#fffef9;
+  border:1px solid #d8c7a4;
+  border-radius:10px;
+  padding:30px 40px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
-/* ================= MAIN ================= */
-main{
-  background:linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.9)),
-  url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  border:1px solid #e0d3b7;
-  border-radius:14px;
-  padding:26px;
+/* ===== Article ===== */
+.article-title{
+  font-size:34px;
+  margin-bottom:10px;
 }
-main h2{
-  font-family:"Amiri",serif;
-  font-size:26px;
+
+.article-meta{
+  font-size:14px;
+  color:#6b5a45;
   margin-bottom:20px;
   border-bottom:1px solid #d8c7a4;
-}
-.article{
-  padding:18px;
-  border-radius:10px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #e6dbc3;
-  margin-bottom:16px;
-}
-.article-title{color:#1a5fb4;font-size:22px;}
-.article-meta{font-size:14px;color:#6b5a45}
-
-/* ================= ASIDE ================= */
-aside{
-  background:linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.9)),
-  url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
-  border:1px solid #e0d3b7;
-  border-radius:14px;
-  padding:18px;
-}
-aside h3{font-family:"Amiri",serif}
-.nav-item{
-  padding:10px;margin-bottom:8px;
-  border-radius:6px;
-  background:linear-gradient(#fffdf8,#efe3cd);
-  border:1px solid #d6c4a3;
+  padding-bottom:10px;
 }
 
-/* ================= FOOTER ================= */
-footer{
-  margin-top:50px;
-  padding:24px;
+.article-content{
+  font-size:20px;
+}
+
+/* ===== Footer ===== */
+.footer{
   text-align:center;
-  border-top:1px solid #d8c7a4;
+  margin:30px 0;
   color:#6b5a45;
 }
 </style>
@@ -147,84 +73,33 @@ footer{
 <body>
 
 <div class="topbar">
-  <div class="search-box">
-    <input id="searchInput" placeholder="Search articles…">
-  </div>
+  <div><a href="index.html">← Back to Library</a></div>
+  <div>Al-Istibānah</div>
 </div>
-
-<header>
-  <div class="header-inner">
-    <div class="header-title">
-      <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif">
-      <div class="header-text">
-        <h1>Al-Istibānah</h1>
-        <p>Upholding the Athār and the Creed of the Salaf</p>
-      </div>
-    </div>
-    <div class="social-icons">
-      <a href="#"><img width="22" src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/discord-white-icon.webp"></a>
-    </div>
-  </div>
-</header>
 
 <div class="container">
-<main>
-  <h2>Latest Articles</h2>
-  <div id="articlesList"></div>
-</main>
+  <div class="article-title">The Obligation of Following the Salaf</div>
+  <div class="article-meta">By Ibn Taymiyyah — رحمه الله — | Category: Aqidah</div>
 
-<aside>
-  <h3>Navigation</h3>
-  <div class="nav-item">Home</div>
-  <div class="nav-item">Articles</div>
-  <div class="nav-item">Library</div>
+  <div class="article-content">
+    <p>
+      This is where your article text goes. Write long text here, like a book page.
+      This is designed to feel like Shamela or a real maktaba reader.
+    </p>
 
-  <h3>Recent Articles</h3>
-  <div id="recentArticles"></div>
-</aside>
+    <p>
+      You can write Arabic here too:
+    </p>
+
+    <p style="font-family:'Scheherazade New',serif; font-size:22px;">
+      قال الإمام أحمد رحمه الله تعالى...
+    </p>
+  </div>
 </div>
 
-<footer>
-© 2025 Al-Istibānah — Upon the Manhaj of the Salaf
-</footer>
-
-<script>
-let articlesData=[];
-
-fetch("/articles.json")
-.then(r=>r.json())
-.then(d=>{
-  articlesData=d;
-  renderArticles(d);
-  renderRecent(d);
-});
-
-function renderArticles(list){
-  const c=document.getElementById("articlesList");
-  c.innerHTML="";
-  list.forEach(a=>{
-    const d=document.createElement("div");
-    d.className="article";
-    d.innerHTML=`
-      <div class="article-title">${a.title}</div>
-      <div class="article-meta">${a.date}</div>
-      <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
-    `;
-    c.appendChild(d);
-  });
-}
-
-function renderRecent(list){
-  const r=document.getElementById("recentArticles");
-  r.innerHTML="";
-  list.slice(0,5).forEach(a=>{
-    const d=document.createElement("div");
-    d.className="nav-item";
-    d.textContent=a.title;
-    r.appendChild(d);
-  });
-}
-</script>
+<div class="footer">
+© 2025 Al-Istibānah
+</div>
 
 </body>
 </html>
