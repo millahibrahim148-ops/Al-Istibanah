@@ -139,7 +139,7 @@
       max-width:620px;
     }
 
-    /* Social icons – darker / black-tinted version */
+    /* Social icons – colored, earlier style */
     .social-icons {
       display:flex;
       gap:10px;
@@ -151,21 +151,20 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:#222;              /* dark base */
-      box-shadow:0 2px 4px rgba(0,0,0,0.3);
+      box-shadow:0 2px 4px rgba(0,0,0,0.25);
       transition:all 0.2s;
     }
     .social-icons a:hover {
-      transform:translateY(-1px);
-      box-shadow:0 4px 10px rgba(0,0,0,0.35);
-      background:#111;
+      transform: scale(1.05) translateY(-1px);
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
     }
-    .social-icons img {
-      width:18px;
-      filter: brightness(0) invert(1); /* makes icons white on dark bg */
-    }
+    .social-fb { background: linear-gradient(#3b5998, #2b4074); }
+    .social-tw { background: linear-gradient(#1da1f2, #0d8bdc); }
+    .social-ig { background: linear-gradient(#e1306c, #c13584); }
+    .social-mail { background: linear-gradient(#ea4335, #c5221f); }
+    .social-icons img { width:16px; filter: brightness(1.1); }
 
-    /* Layout & content styles (unchanged from your base) */
+    /* Layout */
     .container {
       max-width:1150px;
       margin:16px auto;
@@ -195,11 +194,15 @@
       background:linear-gradient(#fffdf8,#efe3cd);
       border:1px solid #e6dbc3;
       margin-bottom:10px;
+      cursor: pointer;
     }
     .article-title {
       color:#1a5fb4;
       font-size:20px;
+      margin-bottom:6px;
+      transition:all 0.2s;
     }
+    .article-title:hover { text-decoration: underline; }
     .article-meta {
       display:flex;
       align-items:center;
@@ -209,7 +212,26 @@
       margin-bottom:8px;
     }
     .article-meta img { width:13px; }
-    .read-more { color:#1a5fb4; }
+
+    .article-excerpt {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .read-more {
+      color:#1a5fb4;
+      text-decoration:none;
+      transition:all 0.2s;
+    }
+    .read-more:hover {
+      text-decoration:underline;
+      color:#134c93;
+    }
 
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
@@ -228,6 +250,11 @@
       border-radius:6px;
       background:linear-gradient(#fffdf8,#efe3cd);
       border:1px solid #d6c4a3;
+      transition:all 0.2s;
+    }
+    .nav-item:hover {
+      transform: scale(1.02);
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
     }
 
     footer {
@@ -247,10 +274,10 @@
 
     <div class="topbar-right">
       <div class="social-icons">
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/discord-white-icon.webp"></a>
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/instagram-white-icon.webp"></a>
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/youtube-app-white-icon.webp"></a>
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/telegram-xxl.png"></a>
+        <a class="social-fb" href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/discord-white-icon.webp"></a>
+        <a class="social-ig" href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/instagram-white-icon.webp"></a>
+        <a class="social-tw" href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/youtube-app-white-icon.webp"></a>
+        <a class="social-mail" href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/telegram-xxl.png"></a>
       </div>
 
       <div class="search-area">
@@ -270,7 +297,7 @@
       <div class="header-title">
         <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif">
         <div class="header-text">
-          <p>Upholding the Athār and the Creed of the Salaf — Providing Concise Advices, Translations and Gems from the Salaf</p>
+          <p>Upholding the Athār and the Creed of the Salaf — Providing Concise Advices, Translation of Books Treaties And Gems from the 'Ulamā and the Salaf «Radī Allahu ʿAnhum»</p>
         </div>
       </div>
     </div>
@@ -304,15 +331,15 @@
   </footer>
 
   <script>
-    let articlesData=[];
+    let articlesData = [];
 
     fetch("/articles.json")
-    .then(r=>r.json())
-    .then(d=>{
-      articlesData=d;
-      renderArticles(d);
-      renderRecent(d);
-    });
+      .then(r => r.json())
+      .then(d => {
+        articlesData = d;
+        renderArticles(d);
+        renderRecent(d);
+      });
 
     function hijriDate(g){
       return new Intl.DateTimeFormat("en-TN-u-ca-islamic",{
@@ -321,46 +348,49 @@
     }
 
     function renderArticles(list){
-      const c=document.getElementById("articlesList");
-      c.innerHTML="";
+      const c = document.getElementById("articlesList");
+      c.innerHTML = "";
       list.sort((a,b)=>new Date(b.date)-new Date(a.date))
       .forEach(a=>{
-        const d=document.createElement("div");
-        d.className="article";
-        d.innerHTML=`
+        const d = document.createElement("div");
+        d.className = "article";
+        d.innerHTML = `
           <div class="article-title">${a.title}</div>
           <div class="article-meta">
             <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/2226-calendar.png">
             <span>${hijriDate(a.date)}</span>
           </div>
-          <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
+          <p class="article-excerpt">${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
         `;
+        d.querySelector(".article-title").addEventListener("click", () => {
+          d.querySelector(".article-excerpt").style.display = d.querySelector(".article-excerpt").style.display === "block" ? "none" : "block";
+        });
         c.appendChild(d);
       });
     }
 
     function renderRecent(list){
-      const r=document.getElementById("recentArticles");
-      r.innerHTML="";
+      const r = document.getElementById("recentArticles");
+      r.innerHTML = "";
       list.slice(0,5).forEach(a=>{
-        const d=document.createElement("div");
-        d.className="nav-item";
-        d.textContent=a.title;
+        const d = document.createElement("div");
+        d.className = "nav-item";
+        d.textContent = a.title;
         r.appendChild(d);
       });
     }
 
     function searchArticles(){
-      const q=document.getElementById("searchInput").value.trim();
-      if(!q)return;
-      window.location.href="/search.html?s="+encodeURIComponent(q);
+      const q = document.getElementById("searchInput").value.trim();
+      if(!q) return;
+      window.location.href = "/search.html?s=" + encodeURIComponent(q);
     }
 
     document.getElementById("searchInput").addEventListener("keydown",e=>{
-      if(e.key==="Enter")searchArticles();
+      if(e.key==="Enter") searchArticles();
     });
 
-    // Live search suggestions (simple version)
+    // Live search suggestions
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
 
@@ -375,12 +405,12 @@
       const matches = articlesData.filter(a => 
         a.title.toLowerCase().includes(q) || 
         (a.excerpt||"").toLowerCase().includes(q)
-      ).slice(0,5);
+      ).slice(0,6);
 
       matches.forEach(a => {
         const item = document.createElement("div");
         item.className = "suggestion-item";
-        item.innerHTML = `<div class="suggestion-title">${a.title}</div>`;
+        item.innerHTML = `<div class="suggestion-title">${a.title}</div><div class="suggestion-excerpt">${(a.excerpt||"").slice(0,70)}${(a.excerpt||"").length>70?"...":""}</div>`;
         item.onclick = () => location.href = a.file;
         suggestionsBox.appendChild(item);
       });
@@ -394,7 +424,7 @@
       }
     });
 
-    // Shrink topbar on scroll
+    // Shrink topbar
     window.addEventListener("scroll", () => {
       document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 60);
     });
