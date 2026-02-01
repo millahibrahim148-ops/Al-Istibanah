@@ -14,7 +14,6 @@
       font-family:"Cormorant Garamond",serif;
       background:#fdfbf6;
       color:#2a2a2a;
-      line-height: 1.6;
     }
 
     /* Topbar */
@@ -43,10 +42,10 @@
     .topbar-right {
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:14px;
     }
 
-    /* Search – enhanced */
+    /* Search */
     .search-area {
       display:flex;
       align-items:center;
@@ -105,7 +104,7 @@
     .suggestion-title { font-weight:500; color:#1a5fb4; }
     .suggestion-excerpt { font-size:13px; color:#6b5a45; margin-top:3px; }
 
-    /* Header – simplified */
+    /* Header – logo + short tagline */
     header {
       position:relative;
       border-bottom:1px solid #cbb891;
@@ -140,32 +139,33 @@
       max-width:620px;
     }
 
-    /* Social icons in topbar – blue theme */
+    /* Social icons – darker / black-tinted version */
     .social-icons {
       display:flex;
-      gap:8px;
+      gap:10px;
     }
     .social-icons a {
-      width:32px;
-      height:32px;
+      width:34px;
+      height:34px;
       border-radius:6px;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 1px 3px rgba(0,0,0,0.2);
+      background:#222;              /* dark base */
+      box-shadow:0 2px 4px rgba(0,0,0,0.3);
       transition:all 0.2s;
     }
     .social-icons a:hover {
       transform:translateY(-1px);
-      box-shadow:0 3px 8px rgba(0,0,0,0.2);
+      box-shadow:0 4px 10px rgba(0,0,0,0.35);
+      background:#111;
     }
-    .social-fb   { background:#1877f2; }
-    .social-tw   { background:#1da1f2; }
-    .social-ig   { background:#e1306c; }
-    .social-mail { background:#1e90ff; }
-    .social-icons img { width:16px; filter:brightness(1.1); }
+    .social-icons img {
+      width:18px;
+      filter: brightness(0) invert(1); /* makes icons white on dark bg */
+    }
 
-    /* Layout */
+    /* Layout & content styles (unchanged from your base) */
     .container {
       max-width:1150px;
       margin:16px auto;
@@ -195,18 +195,10 @@
       background:linear-gradient(#fffdf8,#efe3cd);
       border:1px solid #e6dbc3;
       margin-bottom:10px;
-      opacity:0;
-      animation:fadeIn 0.6s forwards;
     }
-    @keyframes fadeIn { to { opacity:1; } }
-    .article:nth-child(1) { animation-delay:0.1s; }
-    .article:nth-child(2) { animation-delay:0.2s; }
-    .article:nth-child(3) { animation-delay:0.3s; }
-
     .article-title {
       color:#1a5fb4;
       font-size:20px;
-      margin-bottom:6px;
     }
     .article-meta {
       display:flex;
@@ -217,25 +209,7 @@
       margin-bottom:8px;
     }
     .article-meta img { width:13px; }
-
-    .article-actions {
-      display:flex;
-      gap:10px;
-      margin-top:10px;
-    }
-    .action-btn {
-      padding:5px 10px;
-      background:#f6eedc;
-      border:1px solid #cbb891;
-      border-radius:6px;
-      font-size:13px;
-      color:#3a2b1a;
-      text-decoration:none;
-      transition:all 0.2s;
-    }
-    .action-btn:hover {
-      background:#efe3cd;
-    }
+    .read-more { color:#1a5fb4; }
 
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
@@ -247,7 +221,6 @@
     aside h3 {
       font-family:"Amiri",serif;
       font-size:20px;
-      margin-bottom:10px;
     }
     .nav-item {
       padding:8px;
@@ -264,36 +237,6 @@
       border-top:1px solid #d8c7a4;
       color:#6b5a45;
       font-size:15px;
-    }
-
-    #backToTop {
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      width:44px;
-      height:44px;
-      background:#3a2b1a;
-      color:white;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      opacity:0;
-      visibility:hidden;
-      transition:all 0.3s;
-      font-size:1.4rem;
-      z-index:999;
-    }
-    #backToTop.visible {
-      opacity:0.85;
-      visibility:visible;
-    }
-
-    @media (max-width:860px) {
-      .container { grid-template-columns:1fr; }
-      .header-inner { flex-direction:column; text-align:center; gap:12px; }
-      .social-icons { justify-content:center; }
     }
   </style>
 </head>
@@ -327,7 +270,7 @@
       <div class="header-title">
         <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif">
         <div class="header-text">
-          <p>Upholding the Athār and the Creed of the Salaf — Concise Advices & Gems from the Salaf</p>
+          <p>Upholding the Athār and the Creed of the Salaf — Providing Concise Advices, Translations and Gems from the Salaf</p>
         </div>
       </div>
     </div>
@@ -360,18 +303,16 @@
     © 2025 Al-Istibānah — Upon the Manhaj of the Salaf
   </footer>
 
-  <div id="backToTop" title="Back to top">↑</div>
-
   <script>
-    let articlesData = [];
+    let articlesData=[];
 
     fetch("/articles.json")
-      .then(r=>r.json())
-      .then(d=>{
-        articlesData = d;
-        renderArticles(d);
-        renderRecent(d);
-      });
+    .then(r=>r.json())
+    .then(d=>{
+      articlesData=d;
+      renderArticles(d);
+      renderRecent(d);
+    });
 
     function hijriDate(g){
       return new Intl.DateTimeFormat("en-TN-u-ca-islamic",{
@@ -380,57 +321,53 @@
     }
 
     function renderArticles(list){
-      const c = document.getElementById("articlesList");
-      c.innerHTML = "";
+      const c=document.getElementById("articlesList");
+      c.innerHTML="";
       list.sort((a,b)=>new Date(b.date)-new Date(a.date))
       .forEach(a=>{
-        const d = document.createElement("div");
-        d.className = "article";
-        d.innerHTML = `
+        const d=document.createElement("div");
+        d.className="article";
+        d.innerHTML=`
           <div class="article-title">${a.title}</div>
           <div class="article-meta">
             <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/2226-calendar.png">
             <span>${hijriDate(a.date)}</span>
           </div>
           <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
-          <div class="article-actions">
-            <a href="https://wa.me/?text=${encodeURIComponent(a.title + ' - ' + location.origin + a.file)}" target="_blank" class="action-btn">Share on WhatsApp</a>
-            <button class="action-btn" onclick="navigator.clipboard.writeText(location.origin + '${a.file}').then(()=>alert('Link copied!'))">Copy Link</button>
-          </div>
         `;
         c.appendChild(d);
       });
     }
 
     function renderRecent(list){
-      const r = document.getElementById("recentArticles");
-      r.innerHTML = "";
+      const r=document.getElementById("recentArticles");
+      r.innerHTML="";
       list.slice(0,5).forEach(a=>{
-        const d = document.createElement("div");
-        d.className = "nav-item";
-        d.textContent = a.title;
+        const d=document.createElement("div");
+        d.className="nav-item";
+        d.textContent=a.title;
         r.appendChild(d);
       });
     }
 
     function searchArticles(){
-      const q = document.getElementById("searchInput").value.trim();
-      if(!q) return;
-      window.location.href = "/search.html?s=" + encodeURIComponent(q);
+      const q=document.getElementById("searchInput").value.trim();
+      if(!q)return;
+      window.location.href="/search.html?s="+encodeURIComponent(q);
     }
 
     document.getElementById("searchInput").addEventListener("keydown",e=>{
-      if(e.key==="Enter") searchArticles();
+      if(e.key==="Enter")searchArticles();
     });
 
-    // Live suggestions
+    // Live search suggestions (simple version)
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
 
     searchInput.addEventListener("input", () => {
       const q = searchInput.value.trim().toLowerCase();
       suggestionsBox.innerHTML = "";
-      if(q.length < 2){
+      if (q.length < 2) {
         suggestionsBox.style.display = "none";
         return;
       }
@@ -438,12 +375,12 @@
       const matches = articlesData.filter(a => 
         a.title.toLowerCase().includes(q) || 
         (a.excerpt||"").toLowerCase().includes(q)
-      ).slice(0,6);
+      ).slice(0,5);
 
       matches.forEach(a => {
         const item = document.createElement("div");
         item.className = "suggestion-item";
-        item.innerHTML = `<div class="suggestion-title">${a.title}</div><div class="suggestion-excerpt">${(a.excerpt||"").slice(0,70)}${(a.excerpt||"").length>70?"...":""}</div>`;
+        item.innerHTML = `<div class="suggestion-title">${a.title}</div>`;
         item.onclick = () => location.href = a.file;
         suggestionsBox.appendChild(item);
       });
@@ -452,22 +389,15 @@
     });
 
     document.addEventListener("click", e => {
-      if(!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)){
+      if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
         suggestionsBox.style.display = "none";
       }
     });
 
-    // Shrink topbar + back to top
+    // Shrink topbar on scroll
     window.addEventListener("scroll", () => {
-      document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 80);
-
-      const btn = document.getElementById("backToTop");
-      btn.classList.toggle("visible", window.scrollY > 400);
+      document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 60);
     });
-
-    document.getElementById("backToTop").onclick = () => {
-      window.scrollTo({top:0, behavior:"smooth"});
-    };
   </script>
 </body>
 </html>
