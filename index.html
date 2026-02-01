@@ -4,19 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Al-Istibanah - Upholding the Athār and the Creed of the Salaf</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family:"Cormorant Garamond",serif;
       background:#fdfbf6;
       color:#2a2a2a;
-      line-height: 1.6;
+      line-height: 1.65;
     }
-
     /* Topbar */
     .topbar {
       display:flex;
@@ -32,21 +29,19 @@
     }
     .topbar.shrunk {
       padding:6px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
     .site-brand {
       font-family:"Amiri",serif;
-      font-size:22px;
+      font-size:23px;
       color:#3a2b1a;
     }
-
     .topbar-right {
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:14px;
     }
-
-    /* Search – enhanced */
+    /* Search */
     .search-area {
       display:flex;
       align-items:center;
@@ -64,7 +59,7 @@
     .search-box input:focus,
     .search-box:hover input {
       width:320px;
-      box-shadow: 0 0 0 3px rgba(26,95,180,0.15);
+      box-shadow: 0 0 0 3px rgba(26,95,180,0.12);
       outline:none;
     }
     .search-icon {
@@ -78,8 +73,7 @@
       justify-content:center;
       cursor:pointer;
     }
-    .search-icon img { width:16px; }
-
+    .search-icon img { width:17px; }
     .search-suggestions {
       position:absolute;
       top:100%;
@@ -91,7 +85,7 @@
       margin-top:4px;
       max-height:300px;
       overflow-y:auto;
-      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+      box-shadow:0 6px 16px rgba(0,0,0,0.12);
       z-index:999;
       display:none;
     }
@@ -104,12 +98,11 @@
     .suggestion-item:hover { background:#efe3cd; }
     .suggestion-title { font-weight:500; color:#1a5fb4; }
     .suggestion-excerpt { font-size:13px; color:#6b5a45; margin-top:3px; }
-
-    /* Header – simplified */
+    /* Header */
     header {
       position:relative;
       border-bottom:1px solid #cbb891;
-      padding:24px 20px 20px;
+      padding:28px 20px 20px;
       text-align:center;
     }
     header::before {
@@ -117,7 +110,7 @@
       position:absolute;
       inset:0;
       background:url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover no-repeat;
-      opacity:0.12;
+      opacity:0.09;
     }
     .header-inner {
       position:relative;
@@ -128,150 +121,159 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:8px;
+      gap:10px;
     }
     .header-title img {
-      width:180px;
+      width:190px;
     }
     .header-text p {
       color:#4a3f2f;
-      font-size:17px;
+      font-size:17.5px;
       margin:0;
-      max-width:620px;
+      max-width:640px;
     }
-
-    /* Social icons in topbar – blue theme */
+    /* New horizontal nav under header */
+    .main-nav {
+      background: linear-gradient(#fffdf8, #f5f0e5);
+      border-bottom: 1px solid #d8c7a4;
+      padding: 12px 0;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .nav-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .nav-square {
+      padding: 10px 18px;
+      background: #fffefb;
+      border: 1px solid #cbb891;
+      border-radius: 6px;
+      font-size: 15px;
+      color: #3a2b1a;
+      text-decoration: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: all 0.2s ease;
+      min-width: 100px;
+      text-align: center;
+    }
+    .nav-square:hover {
+      background: #efe3cd;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+    /* Social icons – back to original white, slight shadow */
     .social-icons {
       display:flex;
-      gap:8px;
+      gap:10px;
     }
     .social-icons a {
-      width:32px;
-      height:32px;
+      width:34px;
+      height:34px;
       border-radius:6px;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 1px 3px rgba(0,0,0,0.2);
-      transition:all 0.2s;
+      background: #444;                /* neutral dark for white icons to show */
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+      transition: all 0.2s;
     }
     .social-icons a:hover {
-      transform:translateY(-1px);
-      box-shadow:0 3px 8px rgba(0,0,0,0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.25);
     }
-    .social-fb   { background:#1877f2; }
-    .social-tw   { background:#1da1f2; }
-    .social-ig   { background:#e1306c; }
-    .social-mail { background:#1e90ff; }
-    .social-icons img { width:16px; filter:brightness(1.1); }
-
+    .social-icons img { width:18px; filter: brightness(1.15); }
     /* Layout */
     .container {
       max-width:1150px;
-      margin:16px auto;
+      margin:20px auto;
       padding:0 16px;
       display:grid;
       grid-template-columns:1fr 260px;
-      gap:16px;
+      gap:18px;
     }
-
     main {
-      background:linear-gradient(rgba(255,255,255,.85),rgba(255,255,255,.85)),
+      background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
       url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
       border:1px solid #e0d3b7;
       border-radius:12px;
-      padding:16px;
+      padding:18px;
     }
     main h2 {
       font-family:"Amiri",serif;
-      font-size:22px;
-      margin-bottom:12px;
+      font-size:23px;
+      margin-bottom:14px;
       border-bottom:1px solid #d8c7a4;
+      padding-bottom: 6px;
     }
-
     .article {
-      padding:12px;
+      padding:14px;
       border-radius:8px;
       background:linear-gradient(#fffdf8,#efe3cd);
       border:1px solid #e6dbc3;
-      margin-bottom:10px;
+      margin-bottom:14px;
       opacity:0;
       animation:fadeIn 0.6s forwards;
     }
     @keyframes fadeIn { to { opacity:1; } }
     .article:nth-child(1) { animation-delay:0.1s; }
     .article:nth-child(2) { animation-delay:0.2s; }
-    .article:nth-child(3) { animation-delay:0.3s; }
-
     .article-title {
       color:#1a5fb4;
       font-size:20px;
-      margin-bottom:6px;
+      margin-bottom:8px;
     }
     .article-meta {
       display:flex;
       align-items:center;
-      gap:6px;
-      font-size:13px;
+      gap:7px;
+      font-size:13.5px;
       color:#6b5a45;
-      margin-bottom:8px;
+      margin-bottom:10px;
     }
-    .article-meta img { width:13px; }
-
+    .article-meta img { width:14px; }
     .article-actions {
-      display:flex;
-      gap:10px;
-      margin-top:10px;
+      margin-top:12px;
+      font-size:14px;
     }
-    .action-btn {
-      padding:5px 10px;
-      background:#f6eedc;
-      border:1px solid #cbb891;
-      border-radius:6px;
-      font-size:13px;
-      color:#3a2b1a;
-      text-decoration:none;
-      transition:all 0.2s;
-    }
-    .action-btn:hover {
-      background:#efe3cd;
-    }
-
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
       url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
       border:1px solid #e0d3b7;
       border-radius:12px;
-      padding:12px;
+      padding:14px;
     }
     aside h3 {
       font-family:"Amiri",serif;
-      font-size:20px;
-      margin-bottom:10px;
+      font-size:21px;
+      margin-bottom:12px;
     }
     .nav-item {
-      padding:8px;
-      margin-bottom:6px;
+      padding:9px;
+      margin-bottom:7px;
       border-radius:6px;
       background:linear-gradient(#fffdf8,#efe3cd);
       border:1px solid #d6c4a3;
     }
-
     footer {
-      margin-top:20px;
-      padding:14px;
+      margin-top:30px;
+      padding:16px;
       text-align:center;
       border-top:1px solid #d8c7a4;
       color:#6b5a45;
       font-size:15px;
     }
-
     #backToTop {
       position:fixed;
-      bottom:20px;
-      right:20px;
-      width:44px;
-      height:44px;
+      bottom:22px;
+      right:22px;
+      width:46px;
+      height:46px;
       background:#3a2b1a;
       color:white;
       border-radius:50%;
@@ -282,40 +284,38 @@
       opacity:0;
       visibility:hidden;
       transition:all 0.3s;
-      font-size:1.4rem;
+      font-size:1.45rem;
       z-index:999;
     }
     #backToTop.visible {
-      opacity:0.85;
+      opacity:0.88;
       visibility:visible;
     }
-
     @media (max-width:860px) {
       .container { grid-template-columns:1fr; }
-      .header-inner { flex-direction:column; text-align:center; gap:12px; }
+      .header-inner { flex-direction:column; text-align:center; gap:14px; }
       .social-icons { justify-content:center; }
+      .nav-list { gap:10px; }
+      .nav-square { min-width: auto; padding: 9px 14px; font-size:14px; }
     }
   </style>
 </head>
 <body>
-
   <div class="topbar" id="topbar">
     <div class="site-brand">استبانة</div>
-
     <div class="topbar-right">
       <div class="social-icons">
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/discord-white-icon.webp"></a>
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/instagram-white-icon.webp"></a>
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/youtube-app-white-icon.webp"></a>
-        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/telegram-xxl.png"></a>
+        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/discord-white-icon.webp" alt="Discord"></a>
+        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/instagram-white-icon.webp" alt="Instagram"></a>
+        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/youtube-app-white-icon.webp" alt="YouTube"></a>
+        <a href="#"><img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/telegram-xxl.png" alt="Telegram"></a>
       </div>
-
       <div class="search-area">
         <div class="search-box">
           <input id="searchInput" placeholder="Search articles…" autocomplete="off">
         </div>
         <div class="search-icon" onclick="searchArticles()">
-          <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/search-magnifying-glass-white-icon.webp">
+          <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/search-magnifying-glass-white-icon.webp" alt="Search">
         </div>
         <div class="search-suggestions" id="searchSuggestions"></div>
       </div>
@@ -325,7 +325,7 @@
   <header>
     <div class="header-inner">
       <div class="header-title">
-        <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif">
+        <img src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/icon%20image/1228%20(1).gif" alt="Logo">
         <div class="header-text">
           <p>Upholding the Athār and the Creed of the Salaf — Concise Advices & Gems from the Salaf</p>
         </div>
@@ -333,21 +333,31 @@
     </div>
   </header>
 
+  <!-- New horizontal navigation -->
+  <nav class="main-nav">
+    <div class="nav-list">
+      <a href="#" class="nav-square">Home</a>
+      <a href="#" class="nav-square">Articles</a>
+      <a href="#" class="nav-square">Library</a>
+      <a href="#" class="nav-square">ʿAqīdah</a>
+      <a href="#" class="nav-square">Manhaj</a>
+      <a href="#" class="nav-square">Fiqh</a>
+      <a href="#" class="nav-square">Tazkiyah</a>
+    </div>
+  </nav>
+
   <div class="container">
     <main>
       <h2>Latest Articles</h2>
       <div id="articlesList"></div>
     </main>
-
     <aside>
       <h3>Navigation</h3>
       <div class="nav-item">Home</div>
       <div class="nav-item">Articles</div>
       <div class="nav-item">Library</div>
-
       <h3>Recent Articles</h3>
       <div id="recentArticles"></div>
-
       <h3>Topics</h3>
       <div class="nav-item">ʿAqīdah</div>
       <div class="nav-item">Manhaj</div>
@@ -364,7 +374,6 @@
 
   <script>
     let articlesData = [];
-
     fetch("/articles.json")
       .then(r=>r.json())
       .then(d=>{
@@ -393,10 +402,6 @@
             <span>${hijriDate(a.date)}</span>
           </div>
           <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
-          <div class="article-actions">
-            <a href="https://wa.me/?text=${encodeURIComponent(a.title + ' - ' + location.origin + a.file)}" target="_blank" class="action-btn">Share on WhatsApp</a>
-            <button class="action-btn" onclick="navigator.clipboard.writeText(location.origin + '${a.file}').then(()=>alert('Link copied!'))">Copy Link</button>
-          </div>
         `;
         c.appendChild(d);
       });
@@ -426,7 +431,6 @@
     // Live suggestions
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
-
     searchInput.addEventListener("input", () => {
       const q = searchInput.value.trim().toLowerCase();
       suggestionsBox.innerHTML = "";
@@ -434,12 +438,10 @@
         suggestionsBox.style.display = "none";
         return;
       }
-
-      const matches = articlesData.filter(a => 
-        a.title.toLowerCase().includes(q) || 
+      const matches = articlesData.filter(a =>
+        a.title.toLowerCase().includes(q) ||
         (a.excerpt||"").toLowerCase().includes(q)
       ).slice(0,6);
-
       matches.forEach(a => {
         const item = document.createElement("div");
         item.className = "suggestion-item";
@@ -447,7 +449,6 @@
         item.onclick = () => location.href = a.file;
         suggestionsBox.appendChild(item);
       });
-
       suggestionsBox.style.display = matches.length ? "block" : "none";
     });
 
@@ -457,10 +458,9 @@
       }
     });
 
-    // Shrink topbar + back to top
+    // Scroll effects
     window.addEventListener("scroll", () => {
       document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 80);
-
       const btn = document.getElementById("backToTop");
       btn.classList.toggle("visible", window.scrollY > 400);
     });
