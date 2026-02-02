@@ -11,13 +11,13 @@
       font-family:"Cormorant Garamond", Georgia, serif;
       background:#fdfbf6;
       color:#2a2a2a;
-      line-height:1.72;
-      font-size:1.07rem;
+      line-height:1.82;
+      font-size:1.1rem;
     }
     a { color:#1a5fb4; text-decoration:none; }
     a:hover { text-decoration:underline; }
 
-    /* Topbar - same as homepage */
+    /* Topbar */
     .topbar {
       display:flex;
       justify-content:space-between;
@@ -177,8 +177,8 @@
     }
     .article-title {
       font-family:"Amiri",serif;
-      font-size:2.6rem;
-      color:#1a5fb4;
+      font-size:2.2rem; /* smaller & black */
+      color:#1e1e1e;
       margin-bottom:16px;
       line-height:1.2;
     }
@@ -195,82 +195,54 @@
     .breadcrumb a { color:#1a5fb4; text-decoration:none; }
     .breadcrumb a:hover { text-decoration:underline; }
 
-    /* Audio section */
-    .audio-section {
+    /* Audio block - improved */
+    .audio-block {
       margin:2rem 0 3rem;
-      padding:1.2rem;
+      padding:1.4rem;
       background:#fdfaf5;
       border:1px solid #e8dfc8;
-      border-radius:8px;
+      border-radius:10px;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+    .audio-block h3 {
+      font-family:"Amiri",serif;
+      font-size:1.4rem;
+      margin-bottom:1rem;
+      color:#3a2b1a;
     }
     audio {
       width:100%;
-      margin-top:.8rem;
+      height:48px;
+      margin-top:0.5rem;
     }
 
-    /* Floating mini-player (shrunk Telegram style) */
-    #mini-player {
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      background:rgba(0,0,0,.92);
-      color:white;
-      padding:4px 8px;
-      display:none;
-      align-items:center;
-      gap:8px;
-      z-index:9999;
-      box-shadow:0 2px 10px rgba(0,0,0,.3);
-      font-size:.9rem;
-    }
-    #mini-player.visible { display:flex; }
-    #mini-title {
-      flex:1;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-size:.95rem;
-    }
-    #mini-time { font-size:.9rem; }
-    #mini-speed { font-size:.9rem; cursor:pointer; }
-    #mini-volume { font-size:1.1rem; cursor:pointer; }
-    #mini-player button {
-      background:none;
-      border:none;
-      color:white;
-      font-size:1.1rem;
-      cursor:pointer;
-    }
-
-    /* Content */
+    /* Content - improved readability */
     .content {
       font-size:1.1rem;
-      line-height:1.78;
+      line-height:1.82;
     }
     .content h2 {
       font-family:"Amiri",serif;
       font-size:1.9rem;
-      margin:2.8rem 0 1rem;
+      margin:3rem 0 1.1rem;
       color:#1e1e1e;
     }
     .content p {
-      margin-bottom:1.6rem;
+      margin-bottom:1.7rem;
     }
     .content table {
       width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      margin:2rem 0;
-      font-size:.98rem;
+      border-collapse:collapse;
+      margin:2.2rem 0;
+      font-size:1rem;
       background:#fdfaf5;
       border:1px solid #e8dfc8;
-      border-radius:8px;
+      border-radius:10px;
       overflow:hidden;
-      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      box-shadow:0 2px 12px rgba(0,0,0,.06);
     }
     .content th, .content td {
-      padding:1rem 1.2rem;
+      padding:1.1rem 1.3rem;
       text-align:left;
       border-bottom:1px solid #e8dfc8;
     }
@@ -280,7 +252,44 @@
       color:#3a2b1a;
     }
     .content tr:last-child td { border-bottom:none; }
-    .content tr:hover { background:#fffefb; transition:all .2s; }
+    .content tr:hover { background:#fffefb; transition:background .2s; }
+
+    /* TOC block - improved with animation */
+    .toc-block {
+      background:#fdfaf5;
+      border:1px solid #e8dfc8;
+      border-radius:10px;
+      padding:1.4rem;
+      margin:2rem 0 3rem;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);
+      opacity:0;
+      transform:translateY(10px);
+      transition:all .5s ease-out;
+    }
+    .toc-block.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+    .toc-block summary {
+      font-family:"Amiri",serif;
+      font-size:1.4rem;
+      color:#3a2b1a;
+      cursor:pointer;
+      list-style:none;
+      outline:none;
+    }
+    .toc-block ul {
+      margin-top:1.2rem;
+      padding-left:1.4rem;
+      list-style:none;
+    }
+    .toc-block li {
+      margin:0.7rem 0;
+    }
+    .toc-block a {
+      color:#1a5fb4;
+      font-size:1.05rem;
+    }
 
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
@@ -404,9 +413,9 @@
         Published: 8 Muharram 1447 AH • Abū Ḥarb
       </div>
 
-      <!-- Audio section -->
-      <div class="audio-section">
-        <h3>Audio</h3>
+      <!-- Improved audio block -->
+      <div class="audio-block">
+        <h3>Audio Lecture</h3>
         <audio id="mainAudio" controls>
           <source src="https://github.com/millahibrahim148-ops/Al-Istibanah/raw/refs/heads/main/file%20audio/articles/taking%20notes.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
@@ -470,7 +479,7 @@
     <aside>
       <h3>Table of Contents</h3>
       <div class="toc">
-        <details>
+        <details id="toc-details">
           <summary>Show / Hide</summary>
           <ul class="toc-list">
             <li><a href="#benefits-notes">Benefits of Notes & Revisiting</a></li>
@@ -505,16 +514,6 @@
 
   <div id="backToTop" title="Back to top">↑</div>
 
-  <!-- Floating mini-player (shrunk Telegram style) -->
-  <div id="mini-player">
-    <button id="mini-play-pause">▶</button>
-    <span id="mini-title">Taking Notes</span>
-    <span id="mini-time">00:00</span>
-    <span id="mini-volume">🔇</span>
-    <span id="mini-speed">1x</span>
-    <button id="mini-close">✕</button>
-  </div>
-
   <script>
     // Hijri date
     function updateHijri() {
@@ -537,76 +536,20 @@
       window.scrollTo({top:0, behavior:"smooth"});
     };
 
-    // Audio mini-player (controller only, no sound)
-    const mainAudio = document.getElementById('mainAudio');
-    const miniPlayer = document.getElementById('mini-player');
-    const miniPlayPause = document.getElementById('mini-play-pause');
-    const miniTime = document.getElementById('mini-time');
-    const miniClose = document.getElementById('mini-close');
-    const miniVolume = document.getElementById('mini-volume');
-    const miniSpeed = document.getElementById('mini-speed');
-
-    mainAudio.volume = 1; // main has sound
-    mainAudio.addEventListener('play', () => {
-      miniPlayer.classList.add('visible');
-      miniPlayPause.textContent = '⏸';
-      updateTime(); // start updating time
-    });
-
-    mainAudio.addEventListener('pause', () => {
-      miniPlayPause.textContent = '▶';
-    });
-
-    miniPlayPause.addEventListener('click', () => {
-      if (mainAudio.paused) {
-        mainAudio.play();
-        miniPlayPause.textContent = '⏸';
-      } else {
-        mainAudio.pause();
-        miniPlayPause.textContent = '▶';
+    // TOC animation (fade in when opened)
+    const tocDetails = document.getElementById('toc-details');
+    tocDetails.addEventListener('toggle', () => {
+      const tocContent = tocDetails.querySelector('.toc-list');
+      if (tocDetails.open) {
+        tocContent.style.opacity = '0';
+        tocContent.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+          tocContent.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          tocContent.style.opacity = '1';
+          tocContent.style.transform = 'translateY(0)';
+        }, 10);
       }
     });
-
-    miniClose.addEventListener('click', () => {
-      mainAudio.pause();
-      miniPlayer.classList.remove('visible');
-    });
-
-    miniVolume.addEventListener('click', () => {
-      if (mainAudio.muted) {
-        mainAudio.muted = false;
-        miniVolume.textContent = '🔊';
-      } else {
-        mainAudio.muted = true;
-        miniVolume.textContent = '🔇';
-      }
-    });
-
-    miniSpeed.addEventListener('click', () => {
-      if (mainAudio.playbackRate === 1) {
-        mainAudio.playbackRate = 1.5;
-        miniSpeed.textContent = '1.5x';
-      } else if (mainAudio.playbackRate === 1.5) {
-        mainAudio.playbackRate = 2;
-        miniSpeed.textContent = '2x';
-      } else {
-        mainAudio.playbackRate = 1;
-        miniSpeed.textContent = '1x';
-      }
-    });
-
-    function updateTime() {
-      if (!mainAudio.paused) {
-        miniTime.textContent = formatTime(mainAudio.currentTime);
-        requestAnimationFrame(updateTime);
-      }
-    }
-
-    function formatTime(seconds) {
-      const min = Math.floor(seconds / 60);
-      const sec = Math.floor(seconds % 60);
-      return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-    }
   </script>
 </body>
 </html>
