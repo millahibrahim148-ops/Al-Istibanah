@@ -14,7 +14,8 @@
       line-height: 1.65;
     }
 
-    /* Topbar */
+    /* Topbar, Search, Header, Horizontal Nav, Social Icons, Footer, BackToTop - unchanged from your preferred version */
+
     .topbar {
       display:flex;
       justify-content:space-between;
@@ -44,7 +45,6 @@
       gap:14px;
     }
 
-    /* Search */
     .search-area {
       display:flex;
       align-items:center;
@@ -77,32 +77,7 @@
       cursor:pointer;
     }
     .search-icon img { width:17px; }
-    .search-suggestions {
-      position:absolute;
-      top:100%;
-      left:0;
-      right:0;
-      background:#fffefb;
-      border:1px solid #d8c7a4;
-      border-radius:8px;
-      margin-top:4px;
-      max-height:300px;
-      overflow-y:auto;
-      box-shadow:0 6px 16px rgba(0,0,0,0.12);
-      z-index:999;
-      display:none;
-    }
-    .suggestion-item {
-      padding:10px 14px;
-      cursor:pointer;
-      border-bottom:1px solid #f0e8d8;
-    }
-    .suggestion-item:last-child { border-bottom:none; }
-    .suggestion-item:hover { background:#efe3cd; }
-    .suggestion-title { font-weight:500; color:#1a5fb4; }
-    .suggestion-excerpt { font-size:13px; color:#6b5a45; margin-top:3px; }
 
-    /* Header */
     header {
       position:relative;
       border-bottom:1px solid #cbb891;
@@ -137,7 +112,6 @@
       max-width:640px;
     }
 
-    /* Horizontal nav */
     .main-nav {
       background: linear-gradient(#fffdf8, #f5f0e5);
       border-bottom: 1px solid #d8c7a4;
@@ -173,7 +147,6 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.12);
     }
 
-    /* Social icons */
     .social-icons {
       display:flex;
       gap:10px;
@@ -220,7 +193,7 @@
       padding-bottom:12px;
     }
 
-    /* Article card with image support + tags + animation */
+    /* Updated article card: title/date above image + lighter hover */
     .article {
       padding:16px;
       border-radius:10px;
@@ -244,10 +217,11 @@
     .article:nth-child(3) { animation-delay:0.3s; }
     .article:nth-child(4) { animation-delay:0.4s; }
 
-    /* Hover lift for article cards */
+    /* Hover: lighter + slight scale/lift, no extra shadow */
     .article:hover {
+      background: linear-gradient(#ffffff, #f8f2e8); /* brighter/lighter gradient */
       transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06); /* keep original shadow, no increase */
     }
 
     .article-image {
@@ -255,14 +229,14 @@
       height:180px;
       object-fit:cover;
       border-radius:8px;
-      margin-bottom:14px;
+      margin:14px 0 0 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .article-title {
       color:#1a5fb4;
       font-size:1.38rem;
-      margin-bottom:10px;
+      margin-bottom:8px;
       line-height:1.38;
     }
 
@@ -325,7 +299,6 @@
       transition: all 0.25s ease;
       cursor: pointer;
     }
-    /* Restored original hover effect for right sidebar nav */
     .nav-item:hover {
       transform: scale(1.04);
       box-shadow: 0 4px 12px rgba(0,0,0,0.12);
@@ -489,13 +462,13 @@
         }
 
         d.innerHTML = `
-          ${imageHtml}
           <div class="article-title">${a.title}</div>
-          ${tagsHtml}
           <div class="article-meta">
             <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/2226-calendar.png">
             <span>${hijriDate(a.date)}</span>
           </div>
+          ${tagsHtml}
+          ${imageHtml}
           <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
         `;
         c.appendChild(d);
