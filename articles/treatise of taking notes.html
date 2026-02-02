@@ -177,7 +177,7 @@
     }
     .article-title {
       font-family:"Amiri",serif;
-      font-size:1.9rem;
+      font-size:1.85rem; /* smaller */
       color:#444; /* grayer */
       margin-bottom:32px;
       line-height:1.25;
@@ -192,7 +192,7 @@
     .breadcrumb a { color:#1a5fb4; text-decoration:none; }
     .breadcrumb a:hover { text-decoration:underline; }
 
-    /* Audio embed + credits */
+    /* Audio + credits (left-aligned, minimal) */
     .audio-wrapper {
       margin:2.5rem 0 3.5rem;
       text-align:center;
@@ -253,44 +253,6 @@
     }
     .content tr:last-child td { border-bottom:none; }
     .content tr:hover { background:#fffefb; transition:background .2s; }
-
-    /* TOC block - with animation */
-    .toc-block {
-      background:#fdfaf5;
-      border:1px solid #e8dfc8;
-      border-radius:10px;
-      padding:1.5rem;
-      margin:2.5rem 0 3.5rem;
-      box-shadow:0 2px 10px rgba(0,0,0,.05);
-      opacity:0;
-      transform:translateY(15px);
-      transition:all .6s ease-out;
-    }
-    .toc-block.visible {
-      opacity:1;
-      transform:translateY(0);
-    }
-    .toc-block summary {
-      font-family:"Amiri",serif;
-      font-size:1.45rem;
-      color:#3a2b1a;
-      cursor:pointer;
-      list-style:none;
-      outline:none;
-      margin-bottom:1rem;
-    }
-    .toc-block ul {
-      margin-top:1rem;
-      padding-left:1.8rem;
-      list-style:none;
-    }
-    .toc-block li {
-      margin:0.9rem 0;
-    }
-    .toc-block a {
-      color:#1a5fb4;
-      font-size:1.08rem;
-    }
 
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
@@ -411,15 +373,14 @@
 
       <h1 class="article-title">Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It</h1>
 
-      <!-- Clean audio + credits -->
+      <!-- Clean audio embed + credits on left -->
       <div class="audio-wrapper">
         <audio id="mainAudio" controls>
           <source src="https://github.com/millahibrahim148-ops/Al-Istibanah/raw/refs/heads/main/file%20audio/articles/taking%20notes.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
         <div class="audio-credits">
-          🎙️ <strong>Speaker</strong>: Kaijvn (may Allah safeguard him)<br>
-          <strong>Writer</strong>: Al-Istibānah
+          👤 <strong>Speaker</strong>: Kaijvn (may Allah safeguard him)
         </div>
       </div>
 
@@ -478,24 +439,6 @@
     </main>
 
     <aside>
-      <h3>Table of Contents</h3>
-      <div class="toc-block" id="toc-block">
-        <details id="toc-details">
-          <summary>Show / Hide</summary>
-          <ul class="toc-list">
-            <li><a href="#benefits-notes">Benefits of Notes & Revisiting</a></li>
-            <li><a href="#new-book">When You're New to a Book</a></li>
-            <li><a href="#acquainted">Getting Acquainted with the Material</a></li>
-            <li><a href="#knowledge-action">Knowledge is Acting Upon It</a></li>
-            <li><a href="#two-types">Two Types of Memorization</a></li>
-            <li><a href="#summary">Writing a Summary</a></li>
-            <li><a href="#rereading">Rereading the Book</a></li>
-            <li><a href="#reviewing">Reviewing Memorized Material</a></li>
-            <li><a href="#conservative">Being Conservative with Highlights</a></li>
-          </ul>
-        </details>
-      </div>
-
       <h3>Navigation</h3>
       <div class="nav-item">Home</div>
       <div class="nav-item">Articles</div>
@@ -536,34 +479,6 @@
     document.getElementById("backToTop").onclick = () => {
       window.scrollTo({top:0, behavior:"smooth"});
     };
-
-    // TOC animation on open/close
-    const tocBlock = document.getElementById('toc-block');
-    const tocDetails = document.getElementById('toc-details');
-    tocDetails.addEventListener('toggle', () => {
-      if (tocDetails.open) {
-        tocBlock.classList.add('visible');
-      } else {
-        tocBlock.classList.remove('visible');
-      }
-    });
-
-    // Smooth scroll for TOC links
-    document.querySelectorAll('.toc-list a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const target = document.getElementById(targetId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Close TOC after click on mobile
-          if (window.innerWidth <= 860) {
-            tocDetails.removeAttribute('open');
-            tocBlock.classList.remove('visible');
-          }
-        }
-      });
-    });
   </script>
 </body>
 </html>
