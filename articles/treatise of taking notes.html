@@ -11,8 +11,8 @@
       font-family:"Cormorant Garamond", Georgia, serif;
       background:#fdfbf6;
       color:#2a2a2a;
-      line-height:1.82;
-      font-size:1.1rem;
+      line-height:1.85;
+      font-size:1.12rem;
     }
     a { color:#1a5fb4; text-decoration:none; }
     a:hover { text-decoration:underline; }
@@ -177,72 +177,69 @@
     }
     .article-title {
       font-family:"Amiri",serif;
-      font-size:2.2rem; /* smaller & black */
-      color:#1e1e1e;
-      margin-bottom:16px;
-      line-height:1.2;
-    }
-    .article-meta {
-      color:#6b5a45;
-      font-size:1rem;
-      margin-bottom:24px;
+      font-size:1.9rem; /* even smaller */
+      color:#555; /* grayer */
+      margin-bottom:32px;
+      line-height:1.25;
+      text-align:center;
     }
     .breadcrumb {
       color:#6b5a45;
       margin-bottom:16px;
       font-size:0.95rem;
+      text-align:center;
     }
     .breadcrumb a { color:#1a5fb4; text-decoration:none; }
     .breadcrumb a:hover { text-decoration:underline; }
 
-    /* Audio block - improved */
-    .audio-block {
-      margin:2rem 0 3rem;
-      padding:1.4rem;
-      background:#fdfaf5;
-      border:1px solid #e8dfc8;
-      border-radius:10px;
-      box-shadow:0 2px 10px rgba(0,0,0,.05);
-    }
-    .audio-block h3 {
-      font-family:"Amiri",serif;
-      font-size:1.4rem;
-      margin-bottom:1rem;
-      color:#3a2b1a;
+    /* Audio embed - clean & minimal */
+    .audio-wrapper {
+      margin:2.5rem 0 3.5rem;
+      text-align:center;
     }
     audio {
       width:100%;
+      max-width:640px;
       height:48px;
-      margin-top:0.5rem;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      outline:none;
     }
+    .audio-credits {
+      margin-top:1rem;
+      font-size:1rem;
+      color:#555;
+      text-align:center;
+    }
+    .audio-credits strong { color:#333; }
 
-    /* Content - improved readability */
+    /* Content */
     .content {
-      font-size:1.1rem;
-      line-height:1.82;
+      font-size:1.12rem;
+      line-height:1.85;
     }
     .content h2 {
       font-family:"Amiri",serif;
       font-size:1.9rem;
-      margin:3rem 0 1.1rem;
+      margin:3.2rem 0 1.2rem;
       color:#1e1e1e;
     }
     .content p {
-      margin-bottom:1.7rem;
+      margin-bottom:1.8rem;
     }
     .content table {
       width:100%;
       border-collapse:collapse;
-      margin:2.2rem 0;
+      margin:2.5rem 0;
       font-size:1rem;
       background:#fdfaf5;
       border:1px solid #e8dfc8;
       border-radius:10px;
       overflow:hidden;
-      box-shadow:0 2px 12px rgba(0,0,0,.06);
+      box-shadow:0 2px 12px rgba(0,0,0,.05);
     }
     .content th, .content td {
-      padding:1.1rem 1.3rem;
+      padding:1.2rem 1.4rem;
       text-align:left;
       border-bottom:1px solid #e8dfc8;
     }
@@ -254,17 +251,17 @@
     .content tr:last-child td { border-bottom:none; }
     .content tr:hover { background:#fffefb; transition:background .2s; }
 
-    /* TOC block - improved with animation */
+    /* TOC block - nicer with open/close animation */
     .toc-block {
       background:#fdfaf5;
       border:1px solid #e8dfc8;
       border-radius:10px;
-      padding:1.4rem;
-      margin:2rem 0 3rem;
+      padding:1.5rem;
+      margin:2.5rem 0 3.5rem;
       box-shadow:0 2px 10px rgba(0,0,0,.05);
       opacity:0;
-      transform:translateY(10px);
-      transition:all .5s ease-out;
+      transform:translateY(15px);
+      transition:all .6s ease-out;
     }
     .toc-block.visible {
       opacity:1;
@@ -272,23 +269,24 @@
     }
     .toc-block summary {
       font-family:"Amiri",serif;
-      font-size:1.4rem;
+      font-size:1.45rem;
       color:#3a2b1a;
       cursor:pointer;
       list-style:none;
       outline:none;
+      margin-bottom:1rem;
     }
     .toc-block ul {
-      margin-top:1.2rem;
-      padding-left:1.4rem;
+      margin-top:1rem;
+      padding-left:1.8rem;
       list-style:none;
     }
     .toc-block li {
-      margin:0.7rem 0;
+      margin:0.9rem 0;
     }
     .toc-block a {
       color:#1a5fb4;
-      font-size:1.05rem;
+      font-size:1.08rem;
     }
 
     aside {
@@ -409,17 +407,17 @@
       </div>
 
       <h1 class="article-title">Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It</h1>
-      <div class="article-meta">
-        Published: 8 Muharram 1447 AH • Abū Ḥarb
-      </div>
 
-      <!-- Improved audio block -->
-      <div class="audio-block">
-        <h3>Audio Lecture</h3>
+      <!-- Clean audio embed + credits on left -->
+      <div class="audio-wrapper">
         <audio id="mainAudio" controls>
           <source src="https://github.com/millahibrahim148-ops/Al-Istibanah/raw/refs/heads/main/file%20audio/articles/taking%20notes.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
+        <div class="audio-credits">
+          🎙️ <strong>Speaker</strong>: Kaijvn (may Allah safeguard him)<br>
+          <strong>Writer</strong>: Al-Istibānah
+        </div>
       </div>
 
       <div class="content">
@@ -478,7 +476,7 @@
 
     <aside>
       <h3>Table of Contents</h3>
-      <div class="toc">
+      <div class="toc-block" id="toc-block">
         <details id="toc-details">
           <summary>Show / Hide</summary>
           <ul class="toc-list">
@@ -536,19 +534,27 @@
       window.scrollTo({top:0, behavior:"smooth"});
     };
 
-    // TOC animation (fade in when opened)
+    // TOC animation on open/close
+    const tocBlock = document.getElementById('toc-block');
     const tocDetails = document.getElementById('toc-details');
     tocDetails.addEventListener('toggle', () => {
-      const tocContent = tocDetails.querySelector('.toc-list');
       if (tocDetails.open) {
-        tocContent.style.opacity = '0';
-        tocContent.style.transform = 'translateY(10px)';
-        setTimeout(() => {
-          tocContent.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          tocContent.style.opacity = '1';
-          tocContent.style.transform = 'translateY(0)';
-        }, 10);
+        tocBlock.classList.add('visible');
+      } else {
+        tocBlock.classList.remove('visible');
       }
+    });
+
+    // Smooth scroll for TOC links
+    document.querySelectorAll('.toc-list a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
   </script>
 </body>
