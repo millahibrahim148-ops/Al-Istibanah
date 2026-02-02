@@ -177,8 +177,8 @@
     }
     .article-title {
       font-family:"Amiri",serif;
-      font-size:1.9rem; /* even smaller */
-      color:#555; /* grayer */
+      font-size:1.9rem;
+      color:#444; /* grayer */
       margin-bottom:32px;
       line-height:1.25;
       text-align:center;
@@ -192,7 +192,7 @@
     .breadcrumb a { color:#1a5fb4; text-decoration:none; }
     .breadcrumb a:hover { text-decoration:underline; }
 
-    /* Audio embed - clean & minimal */
+    /* Audio embed + credits */
     .audio-wrapper {
       margin:2.5rem 0 3.5rem;
       text-align:center;
@@ -209,7 +209,10 @@
       margin-top:1rem;
       font-size:1rem;
       color:#555;
-      text-align:center;
+      text-align:left;
+      max-width:640px;
+      margin-left:auto;
+      margin-right:auto;
     }
     .audio-credits strong { color:#333; }
 
@@ -251,7 +254,7 @@
     .content tr:last-child td { border-bottom:none; }
     .content tr:hover { background:#fffefb; transition:background .2s; }
 
-    /* TOC block - nicer with open/close animation */
+    /* TOC block - with animation */
     .toc-block {
       background:#fdfaf5;
       border:1px solid #e8dfc8;
@@ -408,7 +411,7 @@
 
       <h1 class="article-title">Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It</h1>
 
-      <!-- Clean audio embed + credits on left -->
+      <!-- Clean audio + credits -->
       <div class="audio-wrapper">
         <audio id="mainAudio" controls>
           <source src="https://github.com/millahibrahim148-ops/Al-Istibanah/raw/refs/heads/main/file%20audio/articles/taking%20notes.mp3" type="audio/mpeg">
@@ -553,6 +556,11 @@
         const target = document.getElementById(targetId);
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close TOC after click on mobile
+          if (window.innerWidth <= 860) {
+            tocDetails.removeAttribute('open');
+            tocBlock.classList.remove('visible');
+          }
         }
       });
     });
