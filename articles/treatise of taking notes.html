@@ -195,16 +195,6 @@
     .breadcrumb a { color:#1a5fb4; text-decoration:none; }
     .breadcrumb a:hover { text-decoration:underline; }
 
-    /* Thumbnail */
-    .thumbnail {
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:8px;
-      margin-bottom:2rem;
-      box-shadow:0 4px 16px rgba(0,0,0,.08);
-    }
-
     /* Audio section */
     .audio-section {
       margin:2rem 0 3rem;
@@ -218,31 +208,38 @@
       margin-top:.8rem;
     }
 
-    /* Floating mini-player (Telegram style) */
+    /* Floating mini-player (shrunk Telegram style) */
     #mini-player {
       position:fixed;
       top:0;
       left:0;
       right:0;
-      background:rgba(60,47,34,.95);
+      background:rgba(0,0,0,.92);
       color:white;
-      padding:8px 16px;
+      padding:4px 8px;
       display:none;
       align-items:center;
-      gap:16px;
+      gap:8px;
       z-index:9999;
       box-shadow:0 2px 10px rgba(0,0,0,.3);
+      font-size:.9rem;
     }
     #mini-player.visible { display:flex; }
-    #mini-player audio {
-      width:100%;
-      max-width:400px;
+    #mini-title {
+      flex:1;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      font-size:.95rem;
     }
+    #mini-time { font-size:.9rem; }
+    #mini-speed { font-size:.9rem; cursor:pointer; }
+    #mini-volume { font-size:1.1rem; cursor:pointer; }
     #mini-player button {
       background:none;
       border:none;
       color:white;
-      font-size:1.2rem;
+      font-size:1.1rem;
       cursor:pointer;
     }
 
@@ -262,24 +259,28 @@
     }
     .content table {
       width:100%;
-      border-collapse:collapse;
+      border-collapse:separate;
+      border-spacing:0;
       margin:2rem 0;
       font-size:.98rem;
       background:#fdfaf5;
+      border:1px solid #e8dfc8;
       border-radius:8px;
       overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
     }
     .content th, .content td {
-      border:1px solid #d8c7a4;
       padding:1rem 1.2rem;
       text-align:left;
+      border-bottom:1px solid #e8dfc8;
     }
     .content th {
       background:#f8f2e8;
       font-weight:600;
       color:#3a2b1a;
     }
-    .content tr:nth-child(even) { background:#fffefb; }
+    .content tr:last-child td { border-bottom:none; }
+    .content tr:hover { background:#fffefb; transition:all .2s; }
 
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
@@ -394,10 +395,14 @@
 
   <div class="container">
     <main>
-      <h2>Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It</h2>
+      <div class="breadcrumb">
+        <a href="/">Home</a> → <a href="#">Articles</a> → Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It
+      </div>
 
-      <!-- Full-width thumbnail -->
-      <img class="thumbnail" src="https://raw.githubusercontent.com/millahibrahim148-ops/Al-Istibanah/refs/heads/main/images/f12a1b2e502050bf8236c147bf6420ef.webp" alt="Cover image">
+      <h1 class="article-title">Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It</h1>
+      <div class="article-meta">
+        Published: 8 Muharram 1447 AH • Abū Ḥarb
+      </div>
 
       <!-- Audio section -->
       <div class="audio-section">
@@ -464,20 +469,22 @@
 
     <aside>
       <h3>Table of Contents</h3>
-      <details>
-        <summary>Show / Hide</summary>
-        <ul>
-          <li><a href="#benefits-notes">Benefits of Notes & Revisiting</a></li>
-          <li><a href="#new-book">When You're New to a Book</a></li>
-          <li><a href="#acquainted">Getting Acquainted with the Material</a></li>
-          <li><a href="#knowledge-action">Knowledge is Acting Upon It</a></li>
-          <li><a href="#two-types">Two Types of Memorization</a></li>
-          <li><a href="#summary">Writing a Summary</a></li>
-          <li><a href="#rereading">Rereading the Book</a></li>
-          <li><a href="#reviewing">Reviewing Memorized Material</a></li>
-          <li><a href="#conservative">Being Conservative with Highlights</a></li>
-        </ul>
-      </details>
+      <div class="toc">
+        <details>
+          <summary>Show / Hide</summary>
+          <ul class="toc-list">
+            <li><a href="#benefits-notes">Benefits of Notes & Revisiting</a></li>
+            <li><a href="#new-book">When You're New to a Book</a></li>
+            <li><a href="#acquainted">Getting Acquainted with the Material</a></li>
+            <li><a href="#knowledge-action">Knowledge is Acting Upon It</a></li>
+            <li><a href="#two-types">Two Types of Memorization</a></li>
+            <li><a href="#summary">Writing a Summary</a></li>
+            <li><a href="#rereading">Rereading the Book</a></li>
+            <li><a href="#reviewing">Reviewing Memorized Material</a></li>
+            <li><a href="#conservative">Being Conservative with Highlights</a></li>
+          </ul>
+        </details>
+      </div>
 
       <h3>Navigation</h3>
       <div class="nav-item">Home</div>
@@ -498,10 +505,13 @@
 
   <div id="backToTop" title="Back to top">↑</div>
 
-  <!-- Floating mini-player -->
+  <!-- Floating mini-player (shrunk Telegram style) -->
   <div id="mini-player">
-    <button id="mini-pause">⏸</button>
-    <audio id="mini-audio" controls></audio>
+    <button id="mini-play-pause">▶</button>
+    <span id="mini-title">Taking Notes</span>
+    <span id="mini-time">00:00</span>
+    <span id="mini-volume">🔇</span>
+    <span id="mini-speed">1x</span>
     <button id="mini-close">✕</button>
   </div>
 
@@ -509,7 +519,7 @@
     // Hijri date
     function updateHijri() {
       const today = new Date();
-      const hijri = new Intl.DateTimeFormat('en-TN-u-ca-islamic', {
+      const hijri = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
         day: 'numeric',
         month: 'long',
         year: 'numeric'
@@ -527,46 +537,76 @@
       window.scrollTo({top:0, behavior:"smooth"});
     };
 
-    // Mini-player logic
+    // Audio mini-player (controller only, no sound)
     const mainAudio = document.getElementById('mainAudio');
     const miniPlayer = document.getElementById('mini-player');
-    const miniAudio = document.getElementById('mini-audio');
-    const miniPause = document.getElementById('mini-pause');
+    const miniPlayPause = document.getElementById('mini-play-pause');
+    const miniTime = document.getElementById('mini-time');
     const miniClose = document.getElementById('mini-close');
+    const miniVolume = document.getElementById('mini-volume');
+    const miniSpeed = document.getElementById('mini-speed');
 
+    mainAudio.volume = 1; // main has sound
     mainAudio.addEventListener('play', () => {
-      miniAudio.src = mainAudio.currentSrc;
-      miniAudio.currentTime = mainAudio.currentTime;
-      miniAudio.play().catch(() => {});
       miniPlayer.classList.add('visible');
+      miniPlayPause.textContent = '⏸';
+      updateTime(); // start updating time
     });
 
-    mainAudio.addEventListener('pause', () => miniAudio.pause());
-
-    mainAudio.addEventListener('timeupdate', () => {
-      if (miniPlayer.classList.contains('visible')) {
-        miniAudio.currentTime = mainAudio.currentTime;
-      }
+    mainAudio.addEventListener('pause', () => {
+      miniPlayPause.textContent = '▶';
     });
 
-    miniPause.addEventListener('click', () => {
-      if (miniAudio.paused) {
-        miniAudio.play();
-        miniPause.textContent = '⏸';
+    miniPlayPause.addEventListener('click', () => {
+      if (mainAudio.paused) {
+        mainAudio.play();
+        miniPlayPause.textContent = '⏸';
       } else {
-        miniAudio.pause();
-        miniPause.textContent = '▶';
+        mainAudio.pause();
+        miniPlayPause.textContent = '▶';
       }
     });
 
     miniClose.addEventListener('click', () => {
-      miniAudio.pause();
-      miniPlayer.classList.remove('visible');
       mainAudio.pause();
+      miniPlayer.classList.remove('visible');
     });
 
-    miniAudio.addEventListener('play', () => mainAudio.play());
-    miniAudio.addEventListener('pause', () => mainAudio.pause());
+    miniVolume.addEventListener('click', () => {
+      if (mainAudio.muted) {
+        mainAudio.muted = false;
+        miniVolume.textContent = '🔊';
+      } else {
+        mainAudio.muted = true;
+        miniVolume.textContent = '🔇';
+      }
+    });
+
+    miniSpeed.addEventListener('click', () => {
+      if (mainAudio.playbackRate === 1) {
+        mainAudio.playbackRate = 1.5;
+        miniSpeed.textContent = '1.5x';
+      } else if (mainAudio.playbackRate === 1.5) {
+        mainAudio.playbackRate = 2;
+        miniSpeed.textContent = '2x';
+      } else {
+        mainAudio.playbackRate = 1;
+        miniSpeed.textContent = '1x';
+      }
+    });
+
+    function updateTime() {
+      if (!mainAudio.paused) {
+        miniTime.textContent = formatTime(mainAudio.currentTime);
+        requestAnimationFrame(updateTime);
+      }
+    }
+
+    function formatTime(seconds) {
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    }
   </script>
 </body>
 </html>
