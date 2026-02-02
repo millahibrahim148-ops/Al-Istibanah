@@ -14,7 +14,7 @@
       line-height: 1.65;
     }
 
-    /* Topbar - same as homepage */
+    /* Topbar - exact match */
     .topbar {
       display:flex;
       justify-content:space-between;
@@ -44,7 +44,7 @@
       gap:14px;
     }
 
-    /* Search - same style as homepage */
+    /* Search - exact match */
     .search-area {
       display:flex;
       align-items:center;
@@ -102,7 +102,7 @@
     .suggestion-title { font-weight:500; color:#1a5fb4; }
     .suggestion-excerpt { font-size:13px; color:#6b5a45; margin-top:3px; }
 
-    /* Header - identical to homepage */
+    /* Header - exact match */
     header {
       position:relative;
       border-bottom:1px solid #cbb891;
@@ -137,7 +137,7 @@
       max-width:640px;
     }
 
-    /* Horizontal nav - same as homepage */
+    /* Horizontal nav - EXACT same as homepage (same classes, same CSS rules) */
     .main-nav {
       background: linear-gradient(#fffdf8, #f5f0e5);
       border-bottom: 1px solid #d8c7a4;
@@ -173,7 +173,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.12);
     }
 
-    /* Social icons - same as homepage */
+    /* Social icons - exact match */
     .social-icons {
       display:flex;
       gap:10px;
@@ -195,7 +195,7 @@
     }
     .social-icons img { width:18px; filter: brightness(1.15); }
 
-    /* Layout - same as homepage */
+    /* Layout - exact grid as homepage */
     .container {
       max-width:1150px;
       margin:20px auto;
@@ -310,7 +310,6 @@
       visibility:visible;
     }
 
-    /* Back to home link */
     .back-home {
       margin-bottom:16px;
     }
@@ -323,6 +322,8 @@
 
     @media (max-width:860px) {
       .container { grid-template-columns:1fr; }
+      .header-inner { flex-direction:column; text-align:center; gap:14px; }
+      .social-icons { justify-content:center; }
       .nav-list { gap:10px; }
       .nav-square { min-width: auto; padding: 9px 14px; font-size:14px; }
     }
@@ -374,10 +375,10 @@
   </nav>
 
   <div class="container">
-    <div class="back-home">
-      <a href="/">← Back to Home</a>
-    </div>
     <main>
+      <div class="back-home">
+        <a href="/">← Back to Home</a>
+      </div>
       <h2 id="resultTitle">Search Results</h2>
       <p id="resultCount" style="color:#6b5a45; margin-bottom:16px;"></p>
       <div id="articlesList"></div>
@@ -388,6 +389,8 @@
       <div class="nav-item">Home</div>
       <div class="nav-item">Articles</div>
       <div class="nav-item">Library</div>
+      <h3>Recent Articles</h3>
+      <div id="recentArticles"></div>
       <h3>Topics</h3>
       <div class="nav-item">ʿAqīdah</div>
       <div class="nav-item">Manhaj</div>
@@ -403,7 +406,7 @@
   <div id="backToTop" title="Back to top">↑</div>
 
   <script>
-    // Hijri date in topbar (same as homepage)
+    // Hijri date in topbar
     function updateHijri() {
       const today = new Date();
       const hijri = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
@@ -421,6 +424,7 @@
       .then(d => {
         articlesData = d;
         performSearch();
+        renderRecent(d);
       });
 
     function hijriDate(g) {
@@ -475,6 +479,17 @@
       });
     }
 
+    function renderRecent(list) {
+      const container = document.getElementById("recentArticles");
+      container.innerHTML = "";
+      list.slice(0,5).forEach(a => {
+        const div = document.createElement("div");
+        div.className = "nav-item";
+        div.textContent = a.title;
+        container.appendChild(div);
+      });
+    }
+
     // Search on Enter
     document.getElementById("searchInput").addEventListener("keydown", e => {
       if (e.key === "Enter") {
@@ -483,7 +498,7 @@
       }
     });
 
-    // Live suggestions (same as homepage)
+    // Live suggestions - same as homepage
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
     searchInput.addEventListener("input", () => {
@@ -496,7 +511,7 @@
       const matches = articlesData.filter(a =>
         a.title.toLowerCase().includes(q) ||
         (a.excerpt || "").toLowerCase().includes(q)
-      ).slice(0, 6);
+      ).slice(0,6);
       matches.forEach(a => {
         const item = document.createElement("div");
         item.className = "suggestion-item";
@@ -518,7 +533,7 @@
       document.getElementById("backToTop").classList.toggle("visible", window.scrollY > 400);
     });
     document.getElementById("backToTop").onclick = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({top:0, behavior:"smooth"});
     };
   </script>
 </body>
