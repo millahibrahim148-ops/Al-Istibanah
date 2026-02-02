@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Al-Istibanah - Upholding the Athār and the Creed of the Salaf</title>
+  <title>Search | Al-Istibānah</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -14,8 +14,7 @@
       line-height: 1.65;
     }
 
-    /* Topbar, Search, Header, Horizontal Nav, Social Icons, Footer, BackToTop - unchanged from your preferred version */
-
+    /* Topbar */
     .topbar {
       display:flex;
       justify-content:space-between;
@@ -45,6 +44,7 @@
       gap:14px;
     }
 
+    /* Search */
     .search-area {
       display:flex;
       align-items:center;
@@ -77,7 +77,32 @@
       cursor:pointer;
     }
     .search-icon img { width:17px; }
+    .search-suggestions {
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:#fffefb;
+      border:1px solid #d8c7a4;
+      border-radius:8px;
+      margin-top:4px;
+      max-height:300px;
+      overflow-y:auto;
+      box-shadow:0 6px 16px rgba(0,0,0,0.12);
+      z-index:999;
+      display:none;
+    }
+    .suggestion-item {
+      padding:10px 14px;
+      cursor:pointer;
+      border-bottom:1px solid #f0e8d8;
+    }
+    .suggestion-item:last-child { border-bottom:none; }
+    .suggestion-item:hover { background:#efe3cd; }
+    .suggestion-title { font-weight:500; color:#1a5fb4; }
+    .suggestion-excerpt { font-size:13px; color:#6b5a45; margin-top:3px; }
 
+    /* Header */
     header {
       position:relative;
       border-bottom:1px solid #cbb891;
@@ -112,6 +137,7 @@
       max-width:640px;
     }
 
+    /* Horizontal nav - exact same as homepage */
     .main-nav {
       background: linear-gradient(#fffdf8, #f5f0e5);
       border-bottom: 1px solid #d8c7a4;
@@ -147,6 +173,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.12);
     }
 
+    /* Social icons */
     .social-icons {
       display:flex;
       gap:10px;
@@ -192,8 +219,6 @@
       border-bottom:1px solid #e0d3b7;
       padding-bottom:12px;
     }
-
-    /* Updated article card: title/date above image + lighter hover */
     .article {
       padding:16px;
       border-radius:10px;
@@ -207,21 +232,17 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
     @keyframes fadeInUp {
-      to {
-        opacity:1;
-        transform: translateY(0);
-      }
+      to { opacity:1; transform: translateY(0); }
     }
     .article:nth-child(1) { animation-delay:0.1s; }
     .article:nth-child(2) { animation-delay:0.2s; }
     .article:nth-child(3) { animation-delay:0.3s; }
     .article:nth-child(4) { animation-delay:0.4s; }
 
-    /* Hover: lighter + slight scale/lift, no extra shadow */
     .article:hover {
-      background: linear-gradient(#ffffff, #f8f2e8); /* brighter/lighter gradient */
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06); /* keep original shadow, no increase */
+      background: linear-gradient(#fffefb, #efe3cd);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
     }
 
     .article-image {
@@ -335,6 +356,16 @@
     }
     #backToTop.visible { opacity:0.92; visibility:visible; }
 
+    .back-home {
+      margin-bottom:20px;
+    }
+    .back-home a {
+      color:#1a5fb4;
+      text-decoration:none;
+      font-size:15px;
+    }
+    .back-home a:hover { text-decoration:underline; }
+
     @media (max-width:860px) {
       .container { grid-template-columns:1fr; gap:40px; }
       main { padding:20px 16px; }
@@ -376,7 +407,7 @@
 
   <nav class="main-nav">
     <div class="nav-list">
-      <a href="#" class="nav-square">Home</a>
+      <a href="/" class="nav-square">Home</a>
       <a href="#" class="nav-square">Articles</a>
       <a href="#" class="nav-square">Library</a>
       <a href="#" class="nav-square">ʿAqīdah</a>
@@ -388,7 +419,11 @@
 
   <div class="container">
     <main>
-      <h2>Latest Articles</h2>
+      <div class="back-home">
+        <a href="/">← Back to Home</a>
+      </div>
+      <h2 id="resultTitle">Search Results</h2>
+      <p id="resultCount" style="color:#6b5a45; margin-bottom:20px;"></p>
       <div id="articlesList"></div>
     </main>
 
@@ -428,26 +463,53 @@
 
     let articlesData = [];
     fetch("/articles.json")
-      .then(r=>r.json())
-      .then(d=>{
+      .then(r => r.json())
+      .then(d => {
         articlesData = d;
-        renderArticles(d);
+        performSearch();
         renderRecent(d);
       });
 
-    function hijriDate(g){
-      return new Intl.DateTimeFormat("en-TN-u-ca-islamic",{
-        day:"numeric",month:"long",year:"numeric"
+    function hijriDate(g) {
+      return new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+        day: "numeric", month: "long", year: "numeric"
       }).format(new Date(g));
     }
 
-    function renderArticles(list){
-      const c = document.getElementById("articlesList");
-      c.innerHTML = "";
-      list.sort((a,b)=>new Date(b.date)-new Date(a.date))
-      .forEach(a=>{
-        const d = document.createElement("div");
-        d.className = "article";
+    function performSearch() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get("s")?.trim().toLowerCase() || "";
+      document.getElementById("searchInput").value = query || "";
+
+      if (!query) {
+        document.getElementById("resultTitle").textContent = "No search term entered";
+        document.getElementById("resultCount").textContent = "";
+        return;
+      }
+
+      const filtered = articlesData.filter(a =>
+        a.title.toLowerCase().includes(query) ||
+        (a.excerpt || "").toLowerCase().includes(query)
+      );
+
+      document.getElementById("resultTitle").textContent = `Results for "${query}"`;
+      document.getElementById("resultCount").textContent = `Found ${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
+
+      renderResults(filtered);
+    }
+
+    function renderResults(list) {
+      const container = document.getElementById("articlesList");
+      container.innerHTML = "";
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:#6b5a45;">No articles found matching your search.</p>';
+        return;
+      }
+
+      list.forEach(a => {
+        const div = document.createElement("div");
+        div.className = "article";
 
         let imageHtml = '';
         if (a.image) {
@@ -461,73 +523,72 @@
           '</div>';
         }
 
-        d.innerHTML = `
+        div.innerHTML = `
           <div class="article-title">${a.title}</div>
           <div class="article-meta">
-            <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/2226-calendar.png">
+            <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/2226-calendar.png" alt="Date" style="width:14px;">
             <span>${hijriDate(a.date)}</span>
           </div>
           ${tagsHtml}
           ${imageHtml}
-          <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
+          <p>${a.excerpt || ""} <a class="read-more" href="${a.file}">Read more »</a></p>
         `;
-        c.appendChild(d);
+        container.appendChild(div);
       });
     }
 
-    function renderRecent(list){
-      const r = document.getElementById("recentArticles");
-      r.innerHTML = "";
-      list.slice(0,5).forEach(a=>{
-        const d = document.createElement("div");
-        d.className = "nav-item";
-        d.textContent = a.title;
-        r.appendChild(d);
+    function renderRecent(list) {
+      const container = document.getElementById("recentArticles");
+      container.innerHTML = "";
+      list.slice(0,5).forEach(a => {
+        const div = document.createElement("div");
+        div.className = "nav-item";
+        div.textContent = a.title;
+        container.appendChild(div);
       });
     }
 
-    function searchArticles(){
-      const q = document.getElementById("searchInput").value.trim();
-      if(!q) return;
-      window.location.href = "/search.html?s=" + encodeURIComponent(q);
-    }
-
-    document.getElementById("searchInput").addEventListener("keydown",e=>{
-      if(e.key==="Enter") searchArticles();
+    // Search on Enter
+    document.getElementById("searchInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        const q = e.target.value.trim();
+        if (q) window.location.href = "/search.html?s=" + encodeURIComponent(q);
+      }
     });
 
+    // Live suggestions - same as homepage
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
     searchInput.addEventListener("input", () => {
       const q = searchInput.value.trim().toLowerCase();
       suggestionsBox.innerHTML = "";
-      if(q.length < 2){
+      if (q.length < 2) {
         suggestionsBox.style.display = "none";
         return;
       }
       const matches = articlesData.filter(a =>
         a.title.toLowerCase().includes(q) ||
-        (a.excerpt||"").toLowerCase().includes(q)
+        (a.excerpt || "").toLowerCase().includes(q)
       ).slice(0,6);
       matches.forEach(a => {
         const item = document.createElement("div");
         item.className = "suggestion-item";
-        item.innerHTML = `<div class="suggestion-title">${a.title}</div><div class="suggestion-excerpt">${(a.excerpt||"").slice(0,70)}${(a.excerpt||"").length>70?"...":""}</div>`;
+        item.innerHTML = `<div class="suggestion-title">${a.title}</div><div class="suggestion-excerpt">${(a.excerpt || "").slice(0,70)}${(a.excerpt || "").length > 70 ? "..." : ""}</div>`;
         item.onclick = () => location.href = a.file;
         suggestionsBox.appendChild(item);
       });
       suggestionsBox.style.display = matches.length ? "block" : "none";
     });
     document.addEventListener("click", e => {
-      if(!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)){
+      if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
         suggestionsBox.style.display = "none";
       }
     });
 
+    // Scroll effects
     window.addEventListener("scroll", () => {
       document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 80);
-      const btn = document.getElementById("backToTop");
-      btn.classList.toggle("visible", window.scrollY > 400);
+      document.getElementById("backToTop").classList.toggle("visible", window.scrollY > 400);
     });
     document.getElementById("backToTop").onclick = () => {
       window.scrollTo({top:0, behavior:"smooth"});
