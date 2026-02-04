@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Al-Istibanah - Upholding the Athār and the Creed of the Salaf</title>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It | Al-Istibānah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family:"Cormorant Garamond",serif;
+      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
       background:#fdfbf6;
       color:#2a2a2a;
-      line-height: 1.65;
+      line-height:1.88;
+      font-size:1.13rem;
     }
+    a { color:#1a5fb4; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
     /* Topbar */
     .topbar {
       display:flex;
@@ -22,46 +25,34 @@
       padding:8px 20px;
       background:linear-gradient(#fdfbf6,#efe4cc);
       border-bottom:1px solid #cbb891;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transition: all 0.3s ease;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      transition:all .3s ease;
     }
-    .topbar.shrunk {
-      padding:6px 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    }
+    .topbar.shrunk { padding:6px 20px; box-shadow:0 3px 10px rgba(0,0,0,.08); }
     .hijri-brand {
       font-family:"Amiri",serif;
-      font-size: 1.8rem;
-      font-weight: 500;
+      font-size:1.8rem;
+      font-weight:500;
       color:#3a2b1a;
-      letter-spacing: 0.8px;
     }
-    .topbar-right {
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
+    .topbar-right { display:flex; align-items:center; gap:14px; }
+
     /* Search */
-    .search-area {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      position: relative;
-    }
+    .search-area { display:flex; align-items:center; gap:8px; position:relative; }
     .search-box input {
       width:240px;
       padding:8px 12px;
       border-radius:8px;
       border:1px solid #d8c7a4;
       background:linear-gradient(#fffefb,#efe3cd);
-      transition: width 0.35s ease, box-shadow 0.3s;
+      transition:width .35s ease,box-shadow .3s;
     }
     .search-box input:focus,
     .search-box:hover input {
       width:320px;
-      box-shadow: 0 0 0 3px rgba(26,95,180,0.12);
+      box-shadow:0 0 0 3px rgba(26,95,180,.12);
       outline:none;
     }
     .search-icon {
@@ -85,9 +76,9 @@
       border:1px solid #d8c7a4;
       border-radius:8px;
       margin-top:4px;
-      max-height:300px;
+      max-height:280px;
       overflow-y:auto;
-      box-shadow:0 6px 16px rgba(0,0,0,0.12);
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
       z-index:999;
       display:none;
     }
@@ -95,11 +86,13 @@
       padding:10px 14px;
       cursor:pointer;
       border-bottom:1px solid #f0e8d8;
+      transition:background .2s;
     }
     .suggestion-item:last-child { border-bottom:none; }
     .suggestion-item:hover { background:#efe3cd; }
     .suggestion-title { font-weight:500; color:#1a5fb4; }
     .suggestion-excerpt { font-size:13px; color:#6b5a45; margin-top:3px; }
+
     /* Header */
     header {
       position:relative;
@@ -112,7 +105,7 @@
       position:absolute;
       inset:0;
       background:url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover no-repeat;
-      opacity:0.09;
+      opacity:.09;
     }
     .header-inner {
       position:relative;
@@ -125,51 +118,53 @@
       align-items:center;
       gap:10px;
     }
-    .header-title img {
-      width:190px;
-    }
+    .header-title img { width:190px; }
     .header-text p {
       color:#4a3f2f;
       font-size:17.5px;
       margin:0;
       max-width:640px;
     }
-    /* Horizontal nav under header */
+
+    /* Horizontal nav */
     .main-nav {
-      background: linear-gradient(#fffdf8, #f5f0e5);
-      border-bottom: 1px solid #d8c7a4;
-      padding: 12px 0;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      background:linear-gradient(#fffdf8,#f5f0e5);
+      border-bottom:1px solid #d8c7a4;
+      padding:12px 0;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,.05);
+      position:relative;
+      z-index:999;
     }
     .nav-list {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 16px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 16px;
     }
     .nav-square {
-      padding: 10px 18px;
-      background: #fffefb;
-      border: 1px solid #cbb891;
-      border-radius: 6px;
-      font-size: 15px;
-      color: #3a2b1a;
-      text-decoration: none;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-      transition: all 0.2s ease;
-      min-width: 100px;
-      text-align: center;
+      padding:10px 18px;
+      background:#fffefb;
+      border:1px solid #cbb891;
+      border-radius:6px;
+      font-size:15px;
+      color:#3a2b1a;
+      text-decoration:none;
+      box-shadow:0 1px 4px rgba(0,0,0,.06);
+      transition:all .2s ease;
+      min-width:100px;
+      text-align:center;
     }
     .nav-square:hover {
-      background: #efe3cd;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+      background:#efe3cd;
+      transform:translateY(-1px);
+      box-shadow:0 3px 10px rgba(0,0,0,.12);
     }
-    /* Social icons – back to original white, slight shadow */
+
+    /* Social icons */
     .social-icons {
       display:flex;
       gap:10px;
@@ -181,79 +176,133 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background: #444;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-      transition: all 0.2s;
+      background:#444;
+      box-shadow:0 1px 4px rgba(0,0,0,.18);
+      transition:all .2s;
     }
     .social-icons a:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+      transform:translateY(-1px);
+      box-shadow:0 3px 10px rgba(0,0,0,.25);
     }
-    .social-icons img { width:18px; filter: brightness(1.15); }
+    .social-icons img { width:18px; filter:brightness(1.15); }
+
     /* Layout */
     .container {
       max-width:1150px;
-      margin:20px auto;
-      padding:0 16px;
+      margin:32px auto;
+      padding:0 20px;
       display:grid;
       grid-template-columns:1fr 260px;
-      gap:18px;
+      gap:32px;
     }
     main {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
       url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
       border:1px solid #e0d3b7;
       border-radius:12px;
-      padding:18px;
-    }
-    main h2 {
-      font-family:"Amiri",serif;
-      font-size:23px;
-      margin-bottom:14px;
-      border-bottom:1px solid #d8c7a4;
-      padding-bottom: 6px;
-    }
-    .article {
-      padding:14px;
-      border-radius:8px;
-      background:linear-gradient(#fffdf8,#efe3cd);
-      border:1px solid #e6dbc3;
-      margin-bottom:14px;
+      padding:28px;
+      animation:fadeInContent 0.8s ease-out forwards;
       opacity:0;
-      animation:fadeIn 0.6s forwards;
     }
-    @keyframes fadeIn { to { opacity:1; } }
-    .article:nth-child(1) { animation-delay:0.1s; }
-    .article:nth-child(2) { animation-delay:0.2s; }
+    @keyframes fadeInContent {
+      to { opacity:1; }
+    }
     .article-title {
-      color:#1a5fb4;
-      font-size:20px;
-      margin-bottom:8px;
+      font-family:"Amiri",serif;
+      font-size:1.8rem;
+      color:#555;
+      margin-bottom:32px;
+      line-height:1.25;
+      text-align:center;
     }
-    .article-meta {
-      display:flex;
-      align-items:center;
-      gap:7px;
-      font-size:13.5px;
+    .breadcrumb {
       color:#6b5a45;
-      margin-bottom:10px;
+      margin-bottom:16px;
+      font-size:0.95rem;
+      text-align:center;
     }
-    .article-meta img { width:14px; }
-    .article-actions {
-      margin-top:12px;
-      font-size:14px;
+    .breadcrumb a { color:#1a5fb4; text-decoration:none; }
+    .breadcrumb a:hover { text-decoration:underline; }
+
+    /* Audio embed + speaker credit */
+    .audio-wrapper {
+      margin:2.5rem 0 3.5rem;
+      text-align:center;
     }
+    audio {
+      width:100%;
+      max-width:640px;
+      height:48px;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      outline:none;
+    }
+    .audio-credits {
+      margin-top:1rem;
+      font-size:1rem;
+      color:#555;
+      text-align:left;
+      max-width:640px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .audio-credits strong { color:#333; }
+
+    /* Content */
+    .content {
+      font-size:1.13rem;
+      line-height:1.88;
+    }
+    .content h2 {
+      font-family:"Amiri",serif;
+      font-size:1.9rem;
+      margin:3.2rem 0 1.2rem;
+      color:#1e1e1e;
+    }
+    .content p {
+      margin-bottom:1.8rem;
+    }
+    .content table {
+      width:100%;
+      border-collapse:collapse;
+      margin:2.5rem 0;
+      font-size:1rem;
+      background:#fffefb;
+      border:1px solid #cbb891;
+      border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 1px 4px rgba(0,0,0,.06);
+    }
+    .content th, .content td {
+      padding:1.2rem 1.4rem;
+      text-align:left;
+      border-bottom:1px solid #d8c7a4;
+    }
+    .content th {
+      background:#fffefb;
+      font-weight:600;
+      color:#3a2b1a;
+    }
+    .content tr:last-child td { border-bottom:none; }
+    .content tr:hover {
+      background:#efe3cd;
+      transform:translateY(-1px);
+      box-shadow:0 3px 10px rgba(0,0,0,.12);
+      transition:all .2s ease;
+    }
+
     aside {
       background:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
       url("https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/image.png") center/cover;
       border:1px solid #e0d3b7;
       border-radius:12px;
-      padding:14px;
+      padding:20px;
     }
     aside h3 {
       font-family:"Amiri",serif;
-      font-size:21px;
-      margin-bottom:12px;
+      font-size:1.5rem;
+      color:#3c2f1e;
+      margin-bottom:16px;
     }
     .nav-item {
       padding:9px;
@@ -261,23 +310,24 @@
       border-radius:6px;
       background:linear-gradient(#fffdf8,#efe3cd);
       border:1px solid #d6c4a3;
-      transition: all 0.25s ease; /* hover animation base */
-      cursor: pointer;
+      transition:all .25s ease;
+      cursor:pointer;
     }
-    /* Hover animation on right navigation (aside items) */
     .nav-item:hover {
-      transform: scale(1.04); /* gentle zoom */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* lift shadow */
-      background: linear-gradient(#fffdf8, #f8f2e8); /* slight color shift */
+      transform:scale(1.04);
+      box-shadow:0 4px 12px rgba(0,0,0,.12);
+      background:linear-gradient(#fffdf8,#f8f2e8);
     }
+
     footer {
-      margin-top:30px;
-      padding:16px;
+      margin-top:60px;
+      padding:24px;
       text-align:center;
       border-top:1px solid #d8c7a4;
       color:#6b5a45;
       font-size:15px;
     }
+
     #backToTop {
       position:fixed;
       bottom:22px;
@@ -293,24 +343,108 @@
       cursor:pointer;
       opacity:0;
       visibility:hidden;
-      transition:all 0.3s;
+      transition:all .3s;
       font-size:1.45rem;
       z-index:999;
     }
     #backToTop.visible {
-      opacity:0.88;
+      opacity:.88;
       visibility:visible;
     }
+
     @media (max-width:860px) {
       .container { grid-template-columns:1fr; }
-      .header-inner { flex-direction:column; text-align:center; gap:14px; }
-      .social-icons { justify-content:center; }
-      .nav-list { gap:10px; }
-      .nav-square { min-width: auto; padding: 9px 14px; font-size:14px; }
+      main { padding:20px 16px; }
+    }
+
+    /* Telegram-style top audio player (above topbar) */
+    :root {
+      --tg-bg: #1f232a;
+      --tg-text: #ffffff;
+      --tg-muted: #a8adb3;
+      --tg-accent: #4da3ff;
+    }
+    .tg-player {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px; /* shrunk */
+      background: var(--tg-bg);
+      color: var(--tg-text);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transform: translateY(-100%);
+      transition: transform .22s ease;
+      z-index: 1001; /* above topbar */
+    }
+    .tg-player.active { transform: translateY(0); }
+    .tg-btn {
+      background: none;
+      border: none;
+      color: var(--tg-text);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 6px;
+      margin-right: 8px;
+      opacity: .9;
+    }
+    .tg-btn:hover { opacity: 1; }
+    .tg-title {
+      margin: 0 12px;
+      font-size: 13.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+    .tg-time {
+      font-size: 12px;
+      color: var(--tg-muted);
+      margin-right: 8px;
+      min-width: 60px;
+      text-align: right;
+    }
+    .tg-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: rgba(255,255,255,.15);
+      cursor: pointer;
+    }
+    .tg-progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--tg-accent);
+      transition: width .1s linear;
+    }
+
+    @media (max-width:860px) {
+      .tg-player { height: 44px; padding: 0 8px; }
+      .tg-title { font-size: 13px; margin: 0 8px; }
+      .tg-time { font-size: 11px; min-width: 50px; }
     }
   </style>
 </head>
 <body>
+  <!-- Telegram-style top audio player (hidden until main audio plays) -->
+  <div class="tg-player" id="player">
+    <button class="tg-btn" id="playBtn" aria-label="Play/Pause">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="tg-title" id="title">Treatise on Memorizing & Notes</div>
+    <span class="tg-time" id="time">0:00</span>
+    <button class="tg-btn" id="closeBtn" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></svg>
+    </button>
+    <div class="tg-progress" id="progress"><span></span></div>
+  </div>
+
   <div class="topbar" id="topbar">
     <div class="hijri-brand" id="hijriDate"></div>
     <div class="topbar-right">
@@ -331,6 +465,7 @@
       </div>
     </div>
   </div>
+
   <header>
     <div class="header-inner">
       <div class="header-title">
@@ -341,10 +476,10 @@
       </div>
     </div>
   </header>
-  <!-- New horizontal navigation -->
+
   <nav class="main-nav">
     <div class="nav-list">
-      <a href="#" class="nav-square">Home</a>
+      <a href="/" class="nav-square">Home</a>
       <a href="#" class="nav-square">Articles</a>
       <a href="#" class="nav-square">Library</a>
       <a href="#" class="nav-square">ʿAqīdah</a>
@@ -353,18 +488,83 @@
       <a href="#" class="nav-square">Tazkiyah</a>
     </div>
   </nav>
+
   <div class="container">
     <main>
-      <h2>Latest Articles</h2>
-      <div id="articlesList"></div>
+      <div class="breadcrumb">
+        <a href="/">Home</a> → <a href="#">Articles</a> → Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It
+      </div>
+
+      <h1 class="article-title">Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It</h1>
+
+      <!-- Clean audio embed + speaker credit -->
+      <div class="audio-wrapper">
+        <audio id="mainAudio" controls>
+          <source src="https://github.com/millahibrahim148-ops/Al-Istibanah/raw/refs/heads/main/file%20audio/articles/taking%20notes.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <div class="content">
+        <p>Obviously there is benefits in taking a note of something and in turning to it 100% but the thing is When you are new to a book, especially if it's a topic you haven't read that much about Everything is new to you everything you look at and you think subhanAllah. I did not know that.</p>
+
+        <p>First time I picked up a volume of Tafsir As-Sa'di I was like subhanAllah every single page here and there new information overload and that's a beautiful thing and how do that? It's a beauty That we can experience this, right? but, if I was gonna take a note about everything that blew my mind; SubhanAllah, I would just rewrite Tafsir As-Sa'di in a more inferior way because now it's my version It's not the translated text of the original, right</p>
+
+        <p>So when you get acquainted with the material then you can take notes right because then all of a sudden More things are going to be in your general understanding.</p>
+
+        <p>You're going to acquire a better understanding of the topic and So the next time you read it less things are going to stand out to you as being especially Important or fascinating, right?</p>
+
+        <p>The scholars they say that the person Who has knowledge is one who acts upon it And this is a good way to not only make sure that you fully understand something by putting into practice But also if you're physically doing something Related to what you have read then you're going to remember it better</p>
+
+        <p>Now There is there are there are many clips of Brother Abdur-Rahman Hassan, he is a student of knowledge and he gives a recommendation on how people should treat Memorization, right He says there are two types of memorization :</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Word-for-Word Memorization</td>
+              <td>One where you memorize something word-for-word, which is what we typically think of when we say we were going to memorize something We literally letter for letter. Everything is memorized and this is something you should only do with an Arabic text 100% and It's also something that is incredibly time-consuming and it's very difficult</td>
+            </tr>
+            <tr>
+              <td>Memorization in Meaning</td>
+              <td>Something which is easier and something you do before you even approach that stage is you memorize it in meaning, right? You know it well enough you've read it enough you can summarize it in your own words You get the point across but it's not word-for-word, right? It's the general gist of what's being said</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>And he mentions that one of the ways that you become the best level of Acquainted with a text in terms of its meaning and what it's trying to convey is that you write it in your own words by doing a summary and So You will read the book again and you take notes but you only include the most vital information and any time that the author goes off on a tangent or he repeats himself Oh, you know sometimes in order to make sure someone really gets something they will labor the point ten times get ten examples Well, maybe you just put one two or three, right?</p>
+
+        <p>And you're writing it With the same meaning in your own words Then that is the best way like the absolute best way that you can really get fully acquainted with a piece of knowledge but the thing is For you to be so well acquainted with it that you understand what the author is saying you understand what he wanted people to understand so you're able to Distill it so it can be consumed in a much smaller text.</p>
+
+        <p>You have to reread it many times Many many times you would have to reread the same book many times to make a really good summary And that brings me to something which is really under appreciated.</p>
+
+        <p>In al-Madrasatu al-ʿUmariyyah / AMAU in which brother Abdurrahman Hassan is from; They say in their various curricula That when someone Has read something They should read it again.</p>
+
+        <p>And then in the next year, they should read it even more times, right and There are books which bearing in mind they're students of knowledge they know Islam Better than many people who are alive in our time right now Right. They are doing some of the best teaching in a non-Arabic setting in the world and They tell people That there are books that they will reread five ten times in a year even if they're the simplest books</p>
+
+        <p>Why? because there is no better way to make sure you fully understand and remember things to an exact point than continually rereading it Because Memorization consists of exposing yourself to the thing over and over and over again until it digs into your brain</p>
+
+        <p>And so You can memorize it sure But as well as that if you are continually reviewing the material that you have memorized your memorization will remain fresh or remain strong and And you will find it has found almost impossible to forget if you memorize something and you don't revisit it You won't memorize it for real</p>
+
+        <p>there are people they memorize the Quran when they're young and They don't, you know recite more than a couple common Surahs and so they forget a lot of it And this is a less a really big problem people have during their their journey of memorizing the Quran They will not do the Assignment that they're set of reviewing a certain thing and so then when it comes time to review it with their Sheikh They forget it what they forget it a verse or something, you know you need to Renew your memorization. Oh, it's like a online subscription.</p>
+
+        <p>You need to renew it on your card. Otherwise, it's gonna poof It's gonna go; So you constantly revisit the material and of course since you're rereading it so many so many times You're gonna see a lot of your highlights and your old notes and you're gonna think; dude Why did I highlight that? So fella, there are some things I've highlighted. I'm thinking why did I highlight that? Because as you become more familiar with it The knowledge is it's with you, you know, you don't even need the highlighter.</p>
+
+        <p>Yeah That's not to say you shouldn't highlight as you go along because there are definitely things that will be useful for you But you know You should be really conservative with your highlights in your notes because if you use the same book five years from now You're gonna be a little annoyed with yourself</p>
+      </div>
     </main>
+
     <aside>
       <h3>Navigation</h3>
       <div class="nav-item">Home</div>
       <div class="nav-item">Articles</div>
       <div class="nav-item">Library</div>
-      <h3>Recent Articles</h3>
-      <div id="recentArticles"></div>
+
       <h3>Topics</h3>
       <div class="nav-item">ʿAqīdah</div>
       <div class="nav-item">Manhaj</div>
@@ -372,13 +572,15 @@
       <div class="nav-item">Tazkiyah</div>
     </aside>
   </div>
+
   <footer>
     © 2025 Al-Istibānah — Upon the Manhaj of the Salaf
   </footer>
+
   <div id="backToTop" title="Back to top">↑</div>
 
   <script>
-    // Hijri calendar in topbar (replaces Arabic brand name)
+    // Hijri date
     function updateHijri() {
       const today = new Date();
       const hijri = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
@@ -388,92 +590,98 @@
       }).format(today);
       document.getElementById('hijriDate').textContent = hijri;
     }
-    updateHijri(); // run on load
+    updateHijri();
 
-    // Your original script (unchanged)
-    let articlesData = [];
-    fetch("/articles.json")
-      .then(r=>r.json())
-      .then(d=>{
-        articlesData = d;
-        renderArticles(d);
-        renderRecent(d);
-      });
-    function hijriDate(g){
-      return new Intl.DateTimeFormat("en-TN-u-ca-islamic",{
-        day:"numeric",month:"long",year:"numeric"
-      }).format(new Date(g));
-    }
-    function renderArticles(list){
-      const c = document.getElementById("articlesList");
-      c.innerHTML = "";
-      list.sort((a,b)=>new Date(b.date)-new Date(a.date))
-      .forEach(a=>{
-        const d = document.createElement("div");
-        d.className = "article";
-        d.innerHTML = `
-          <div class="article-title">${a.title}</div>
-          <div class="article-meta">
-            <img src="https://raw.githubusercontent.com/millahibrahim148-ops/almaymunah/refs/heads/main/icon%20image/2226-calendar.png">
-            <span>${hijriDate(a.date)}</span>
-          </div>
-          <p>${a.excerpt} <a class="read-more" href="${a.file}">Read more »</a></p>
-        `;
-        c.appendChild(d);
-      });
-    }
-    function renderRecent(list){
-      const r = document.getElementById("recentArticles");
-      r.innerHTML = "";
-      list.slice(0,5).forEach(a=>{
-        const d = document.createElement("div");
-        d.className = "nav-item";
-        d.textContent = a.title;
-        r.appendChild(d);
-      });
-    }
-    function searchArticles(){
-      const q = document.getElementById("searchInput").value.trim();
-      if(!q) return;
-      window.location.href = "/search.html?s=" + encodeURIComponent(q);
-    }
-    document.getElementById("searchInput").addEventListener("keydown",e=>{
-      if(e.key==="Enter") searchArticles();
+    // Scroll effects
+    window.addEventListener("scroll", () => {
+      document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 80);
+      document.getElementById("backToTop").classList.toggle("visible", window.scrollY > 400);
     });
+    document.getElementById("backToTop").onclick = () => {
+      window.scrollTo({top:0, behavior:"smooth"});
+    };
+
+    // Search suggestions (live + Enter key)
+    const articlesData = [
+      { title: "Treatise on How One Should Treat the Way of Highlighting, Memorizing, Taking Notes & Revising It", file: "articles/taking-notes.html", excerpt: "How to properly highlight, memorize, take notes and revise Islamic knowledge..." },
+    ];
+
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
+
     searchInput.addEventListener("input", () => {
       const q = searchInput.value.trim().toLowerCase();
       suggestionsBox.innerHTML = "";
-      if(q.length < 2){
+      if (q.length < 2) {
         suggestionsBox.style.display = "none";
         return;
       }
       const matches = articlesData.filter(a =>
         a.title.toLowerCase().includes(q) ||
-        (a.excerpt||"").toLowerCase().includes(q)
-      ).slice(0,6);
+        (a.excerpt || "").toLowerCase().includes(q)
+      ).slice(0, 6);
       matches.forEach(a => {
         const item = document.createElement("div");
         item.className = "suggestion-item";
-        item.innerHTML = `<div class="suggestion-title">${a.title}</div><div class="suggestion-excerpt">${(a.excerpt||"").slice(0,70)}${(a.excerpt||"").length>70?"...":""}</div>`;
+        item.innerHTML = `<div class="suggestion-title">${a.title}</div><div class="suggestion-excerpt">${(a.excerpt || "").slice(0,70)}${(a.excerpt || "").length > 70 ? "..." : ""}</div>`;
         item.onclick = () => location.href = a.file;
         suggestionsBox.appendChild(item);
       });
       suggestionsBox.style.display = matches.length ? "block" : "none";
     });
+
     document.addEventListener("click", e => {
-      if(!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)){
+      if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
         suggestionsBox.style.display = "none";
       }
     });
-    window.addEventListener("scroll", () => {
-      document.getElementById("topbar").classList.toggle("shrunk", window.scrollY > 80);
-      const btn = document.getElementById("backToTop");
-      btn.classList.toggle("visible", window.scrollY > 400);
+
+    searchInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        const q = searchInput.value.trim();
+        if (q) window.location.href = "/search.html?s=" + encodeURIComponent(q);
+      }
     });
-    document.getElementById("backToTop").onclick = () => {
-      window.scrollTo({top:0, behavior:"smooth"});
+
+    // Telegram-style top audio player (hidden until main audio plays)
+    const mainAudio = document.getElementById('mainAudio');
+    const player = document.getElementById('player');
+    const playBtn = document.getElementById('playBtn');
+    const timeEl = document.getElementById('time');
+    const progressBar = document.getElementById('progress').querySelector('span');
+    const closeBtn = document.getElementById('closeBtn');
+
+    const playIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+    const pauseIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>`;
+
+    mainAudio.addEventListener('play', () => {
+      player.classList.add('active');
+      playBtn.innerHTML = pauseIcon;
+    });
+
+    mainAudio.addEventListener('pause', () => {
+      playBtn.innerHTML = playIcon;
+    });
+
+    mainAudio.addEventListener('timeupdate', () => {
+      const pct = (mainAudio.currentTime / mainAudio.duration) * 100 || 0;
+      progressBar.style.width = pct + '%';
+      const cm = Math.floor(mainAudio.currentTime / 60);
+      const cs = Math.floor(mainAudio.currentTime % 60).toString().padStart(2, '0');
+      timeEl.textContent = `${cm}:${cs}`;
+    });
+
+    playBtn.onclick = () => {
+      if (mainAudio.paused) {
+        mainAudio.play();
+      } else {
+        mainAudio.pause();
+      }
+    };
+
+    closeBtn.onclick = () => {
+      mainAudio.pause();
+      player.classList.remove('active');
     };
   </script>
 </body>
