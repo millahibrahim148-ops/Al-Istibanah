@@ -49,24 +49,31 @@
       flex:1;
     }
 
-    /* Embedded Telegram-style audio player in topbar */
+    /* Telegram-style audio player embedded in topbar */
+    :root {
+      --tg-bg: #1f232a;
+      --tg-text: #ffffff;
+      --tg-muted: #a8adb3;
+      --tg-accent: #4da3ff;
+    }
     .tg-player {
       display:none;
       align-items:center;
       gap:8px;
-      background:#1f232a;
-      color:#ffffff;
+      background:var(--tg-bg);
+      color:var(--tg-text);
       padding:4px 10px;
       border-radius:6px;
       box-shadow:0 2px 8px rgba(0,0,0,.3);
       font-size:13px;
       height:36px;
+      margin-left:auto;
     }
     .tg-player.active { display:flex; }
     .tg-btn {
       background:none;
       border:none;
-      color:#ffffff;
+      color:var(--tg-text);
       cursor:pointer;
       padding:4px;
       opacity:.9;
@@ -81,7 +88,7 @@
       max-width:180px;
     }
     .tg-time {
-      color:#a8adb3;
+      color:var(--tg-muted);
       min-width:50px;
       text-align:right;
     }
@@ -96,8 +103,9 @@
     .tg-progress span {
       height:100%;
       width:0%;
-      background:#4da3ff;
+      background:var(--tg-accent);
       display:block;
+      transition:width .1s linear;
     }
 
     /* Search */
@@ -465,7 +473,52 @@
       <div class="content">
         <p>Obviously there is benefits in taking a note of something and in turning to it 100% but the thing is When you are new to a book, especially if it's a topic you haven't read that much about Everything is new to you everything you look at and you think subhanAllah. I did not know that.</p>
 
-        <!-- ... rest of the content remains the same ... -->
+        <p>First time I picked up a volume of Tafsir As-Sa'di I was like subhanAllah every single page here and there new information overload and that's a beautiful thing and how do that? It's a beauty That we can experience this, right? but, if I was gonna take a note about everything that blew my mind; SubhanAllah, I would just rewrite Tafsir As-Sa'di in a more inferior way because now it's my version It's not the translated text of the original, right</p>
+
+        <p>So when you get acquainted with the material then you can take notes right because then all of a sudden More things are going to be in your general understanding.</p>
+
+        <p>You're going to acquire a better understanding of the topic and So the next time you read it less things are going to stand out to you as being especially Important or fascinating, right?</p>
+
+        <p>The scholars they say that the person Who has knowledge is one who acts upon it And this is a good way to not only make sure that you fully understand something by putting into practice But also if you're physically doing something Related to what you have read then you're going to remember it better</p>
+
+        <p>Now There is there are there are many clips of Brother Abdur-Rahman Hassan, he is a student of knowledge and he gives a recommendation on how people should treat Memorization, right He says there are two types of memorization :</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Word-for-Word Memorization</td>
+              <td>One where you memorize something word-for-word, which is what we typically think of when we say we were going to memorize something We literally letter for letter. Everything is memorized and this is something you should only do with an Arabic text 100% and It's also something that is incredibly time-consuming and it's very difficult</td>
+            </tr>
+            <tr>
+              <td>Memorization in Meaning</td>
+              <td>Something which is easier and something you do before you even approach that stage is you memorize it in meaning, right? You know it well enough you've read it enough you can summarize it in your own words You get the point across but it's not word-for-word, right? It's the general gist of what's being said</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>And he mentions that one of the ways that you become the best level of Acquainted with a text in terms of its meaning and what it's trying to convey is that you write it in your own words by doing a summary and So You will read the book again and you take notes but you only include the most vital information and any time that the author goes off on a tangent or he repeats himself Oh, you know sometimes in order to make sure someone really gets something they will labor the point ten times get ten examples Well, maybe you just put one two or three, right?</p>
+
+        <p>And you're writing it With the same meaning in your own words Then that is the best way like the absolute best way that you can really get fully acquainted with a piece of knowledge but the thing is For you to be so well acquainted with it that you understand what the author is saying you understand what he wanted people to understand so you're able to Distill it so it can be consumed in a much smaller text.</p>
+
+        <p>You have to reread it many times Many many times you would have to reread the same book many times to make a really good summary And that brings me to something which is really under appreciated.</p>
+
+        <p>In al-Madrasatu al-ʿUmariyyah / AMAU in which brother Abdurrahman Hassan is from; They say in their various curricula That when someone Has read something They should read it again.</p>
+
+        <p>And then in the next year, they should read it even more times, right and There are books which bearing in mind they're students of knowledge they know Islam Better than many people who are alive in our time right now Right. They are doing some of the best teaching in a non-Arabic setting in the world and They tell people That there are books that they will reread five ten times in a year even if they're the simplest books</p>
+
+        <p>Why? because there is no better way to make sure you fully understand and remember things to an exact point than continually rereading it Because Memorization consists of exposing yourself to the thing over and over and over again until it digs into your brain</p>
+
+        <p>And so You can memorize it sure But as well as that if you are continually reviewing the material that you have memorized your memorization will remain fresh or remain strong and And you will find it has found almost impossible to forget if you memorize something and you don't revisit it You won't memorize it for real</p>
+
+        <p>there are people they memorize the Quran when they're young and They don't, you know recite more than a couple common Surahs and so they forget a lot of it And this is a less a really big problem people have during their their journey of memorizing the Quran They will not do the Assignment that they're set of reviewing a certain thing and so then when it comes time to review it with their Sheikh They forget it what they forget it a verse or something, you know you need to Renew your memorization. Oh, it's like a online subscription.</p>
+
+        <p>You need to renew it on your card. Otherwise, it's gonna poof It's gonna go; So you constantly revisit the material and of course since you're rereading it so many so many times You're gonna see a lot of your highlights and your old notes and you're gonna think; dude Why did I highlight that? So fella, there are some things I've highlighted. I'm thinking why did I highlight that? Because as you become more familiar with it The knowledge is it's with you, you know, you don't even need the highlighter.</p>
 
         <p>Yeah That's not to say you shouldn't highlight as you go along because there are definitely things that will be useful for you But you know You should be really conservative with your highlights in your notes because if you use the same book five years from now You're gonna be a little annoyed with yourself</p>
       </div>
